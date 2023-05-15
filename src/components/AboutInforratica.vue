@@ -34,7 +34,7 @@
 .container-fluid {
     position: relative;
     background-color: rgb(232, 232, 232);
-    padding-bottom: 100px;
+    padding-bottom: 50px;
 }
 
 .col-12 {

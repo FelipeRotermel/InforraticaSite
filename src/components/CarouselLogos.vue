@@ -1,7 +1,7 @@
 <script></script>
 
 <template>
-    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    <div id="marcas" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <h1 class="fs-1 text-center">Trabalhamos com:</h1>
             <div class="carousel-item active">
@@ -43,10 +43,10 @@
                 </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#marcas" data-bs-slide="prev">
             <i class="bi bi-arrow-left-circle"></i>
         </button>
-        <button class="carousel-control-next btn-outline-secondary" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+        <button class="carousel-control-next btn-outline-secondary" type="button" data-bs-target="#marcas" data-bs-slide="next">
             <i class="bi bi-arrow-right-circle"></i>
         </button>
     </div>
@@ -65,10 +65,12 @@
 .card {
     justify-content: center;
     align-items: center;
+    padding-right: 2%;
+    padding-left: 2%;
 }
 .card img {
-  max-width: 200px;
-  max-height: 200px;
+  max-width: 100px;
+  max-height: 100px;
 }
 
 .card {

@@ -8,10 +8,10 @@
                     <h3 class="main-title display-6 fw-bold">Sobre a Inforratica:</h3>
                     <hr class="opacity-100">
                 </div>
-                <div class="col-md-6" data-aos="fade-right" data-aos-duration="1000">
+                <div class="col-md-6">
                     <img class="img-fluid" src="https://images.unsplash.com/photo-1624705002806-5d72df19c3ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29tcHV0ZXIlMjBzdG9yZXxlbnwwfHwwfHw%3D&w=1000&q=80" alt="CS:GO">
                 </div>
-                <div class="col-md-6" data-aos="fade-left" data-aos-duration="1000">
+                <div class="col-md-6">
                     <h3 class="about-title">A mais confiável</h3>
                     <p class="fs-5 text">
                         Inforratica é uma loja especializada em reparo de computadores e notebooks. Começamos nossa operação em 2023, com o objetivo de fornecer os melhores produtos e serviços de informática para nossos clientes.

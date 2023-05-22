@@ -2,26 +2,20 @@
 
 <template>
     <div class="container-fluid">
-        <footer class="text-center text-lg-start text-white">
-            <section class="d-flex justify-content-between p-4">
+        <footer class="text-center text-lg-center text-white">
+            <section class="d-flex justify-content-center p-4">
                 <div>
-                  <a href="" class="text-white me-4">
-                    <i class="fab fa-facebook-f"></i>
+                  <a href="" class="text-white">
+                    <i class="bi bi-facebook"></i>
                   </a>
-                  <a href="" class="text-white me-4">
-                    <i class="fab fa-twitter"></i>
+                  <a href="" class="text-white">
+                    <i class="bi bi-instagram"></i>
                   </a>
-                  <a href="" class="text-white me-4">
-                    <i class="fab fa-google"></i>
+                  <a href="" class="text-white">
+                    <i class="bi bi-youtube"></i>
                   </a>
-                  <a href="" class="text-white me-4">
-                    <i class="fab fa-instagram"></i>
-                  </a>
-                  <a href="" class="text-white me-4">
-                    <i class="fab fa-linkedin"></i>
-                  </a>
-                  <a href="" class="text-white me-4">
-                    <i class="fab fa-github"></i>
+                  <a href="" class="text-white">
+                    <i class="bi bi-github"></i>
                   </a>
                 </div>
             </section>
@@ -29,53 +23,27 @@
                 <div class="container text-center text-md-start mt-5">
                     <div class="row mt-3">
                         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                            <h6 class="text-uppercase fw-bold">Company name</h6>
+                            <h6 class="text-uppercase fw-bold">Inforratica</h6>
                             <hr class="mb-4 mt-0 d-inline-block mx-auto" />
                             <p>
-                              Here you can use rows and columns to organize your footer
-                              content. Lorem ipsum dolor sit amet, consectetur adipisicing
-                              elit.
+                              Loja fundada em 2023 especializada em reparos de computadores e notebooks.
                             </p>
                         </div>
                         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                          <h6 class="text-uppercase fw-bold">Products</h6>
+                          <h6 class="text-uppercase fw-bold">Localização</h6>
                           <hr class="mb-4 mt-0 d-inline-block mx-auto" />
                           <p>
-                            <a href="#!" class="text-white">MDBootstrap</a>
+                            <a class="text-white">Santa Catarina</a>
                           </p>
                           <p>
-                            <a href="#!" class="text-white">MDWordPress</a>
+                            <a class="text-white">Joinville</a>
                           </p>
                           <p>
-                            <a href="#!" class="text-white">BrandFlow</a>
+                            <a class="text-white">Espinheiros</a>
                           </p>
                           <p>
-                            <a href="#!" class="text-white">Bootstrap Angular</a>
+                            <a class="text-white">R. Pref. Baltazar Buschle, 3870</a>
                           </p>
-                        </div>
-                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                            <h6 class="text-uppercase fw-bold">Useful links</h6>
-                            <hr class="mb-4 mt-0 d-inline-block mx-auto" />
-                            <p>
-                              <a href="#!" class="text-white">Your Account</a>
-                            </p>
-                            <p>
-                              <a href="#!" class="text-white">Become an Affiliate</a>
-                            </p>
-                            <p>
-                              <a href="#!" class="text-white">Shipping Rates</a>
-                            </p>
-                            <p>
-                              <a href="#!" class="text-white">Help</a>
-                            </p>
-                        </div>
-                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                          <h6 class="text-uppercase fw-bold">Contact</h6>
-                          <hr class="mb-4 mt-0 d-inline-block mx-auto" />
-                          <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
-                          <p><i class="fas fa-envelope mr-3"></i> info@example.com</p>
-                          <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
-                          <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
                         </div>
                     </div>
                 </div>
@@ -91,18 +59,28 @@
 <style scoped>
 
 .container-fluid {
-    background-image: url(https://odatacolocation.com/wp-content/uploads/2021/12/shutterstock_1929852050-scaled.jpg);
+    background-image: url(@/assets/imgfooter.png);
     color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 0;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     object-fit: cover;
 }
+
+.p-3 {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
 a {
-    text-decoration: none;
+  text-decoration: none;
+}
+
+i {
+  font-size: 30px;
+  margin: 10px;
 }
 </style>

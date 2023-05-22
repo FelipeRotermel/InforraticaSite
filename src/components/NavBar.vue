@@ -22,7 +22,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
                 <ul class="navbar-nav mb-3 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link"><router-link to="/ordemservico">Ordem de Serviço</router-link></a>
+                        <a class="nav-link"><router-link to="/ordem-servico">Ordem de Serviço</router-link></a>
                     </li>
                     <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
                         <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>

@@ -42,7 +42,7 @@
 }
 
 .carousel-caption {
-    margin-bottom: 20vh;
+    margin-bottom: 15vh;
 }
 
 .text {

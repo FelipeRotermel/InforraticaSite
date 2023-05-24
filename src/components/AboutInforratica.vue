@@ -9,7 +9,7 @@
                     <hr class="opacity-100">
                 </div>
                 <div class="col-md-6">
-                    <img class="img-fluid" src="https://images.unsplash.com/photo-1624705002806-5d72df19c3ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29tcHV0ZXIlMjBzdG9yZXxlbnwwfHwwfHw%3D&w=1000&q=80" alt="CS:GO">
+                    <img class="img-fluid" src="https://images.unsplash.com/photo-1624705002806-5d72df19c3ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29tcHV0ZXIlMjBzdG9yZXxlbnwwfHwwfHw%3D&w=1000&q=80">
                 </div>
                 <div class="col-md-6">
                     <h3 class="about-title">A mais confiável</h3>
@@ -33,7 +33,6 @@
 
 .container-fluid {
     position: relative;
-    background-color: rgb(232, 232, 232);
     padding-bottom: 50px;
 }
 
@@ -51,10 +50,6 @@ img {
 
 ul {
     list-style:none
-}
-
-.fa {
-    padding-right: 10px;
 }
 
 li {

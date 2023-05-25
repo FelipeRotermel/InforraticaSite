@@ -5,6 +5,7 @@
   import CarouselLogos from '@/components/CarouselLogos.vue';
   import AboutBrands from '@/components/AboutBrands.vue';
   import Footer from '@/components/Footer.vue';
+  import ZaWarudo from '@/components/ZaWarudo.vue';
 </script>
 
 <template>
@@ -13,5 +14,6 @@
     <AboutInforratica />
     <CarouselLogos />
     <AboutBrands />
+    <ZaWarudo />
     <Footer />
 </template>

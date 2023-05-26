@@ -60,10 +60,8 @@
 }
 
 .logo.solid {
-    height: 50px;
-    width: 50px;
-    margin-left: 10px;
-    margin-bottom: 5px;
+    height: 30px;
+    width: 30px;
     transition: 0.4s;
 }
 

@@ -86,21 +86,43 @@ button.is-expanded {
     z-index: 999;
     outline: 2000px solid;
     border-radius: 50%;
-    animation: changeColor 4.1s infinite;
+    animation: explosion 4.1s infinite;
 }
 
-@keyframes changeColor {
+@keyframes explosion {
   0% {
-    outline-color: #26beff;
+    outline-color: #26beff8e;
     background-color: #26beff;
+    box-shadow: 0 0 20px #26beff8e,
+                        0 0 40px #26beff8e, 
+                        0 0 60px #26beff8e, 
+                        0 0 80px #26beff8e, 
+                        0 0 120px #26beff8e,
+                        0 0 220px #26beff8e,
+                        0 0 320px #26beff8e;
   }
   50% {
-    outline-color: #9eff4f;
+    outline-color: #9eff4f8c;
     background-color: #9eff4f;
+    transform: translate3d(0, 0, 0) scale(1.3);
+    box-shadow: 0 0 0 30px #9eff4f8c, 
+                        0 0 0 60px #9eff4f8c,
+                        0 0 0 100px #9eff4f8c,
+                        0 0 0 120px #9eff4fbe, 
+                        0 0 0 200px #9eff4f8c,
+                        0 0 0 400px #9eff4fab, 
+                        0 0 0 450px #9eff4fbb;
   }
   100% {
-    outline-color: #fff538;
+    outline-color: #fff5389d;
     background-color: #fff538;
+    box-shadow: 0 0 20px #fff5389d,
+                        0 0 40px #fff5389d, 
+                        0 0 60px #fff5389d, 
+                        0 0 80px #fff5389d, 
+                        0 0 120px #fff5389d,
+                        0 0 220px #fff5389d,
+                        0 0 320px #fff5389d;
   }
 }
 </style>

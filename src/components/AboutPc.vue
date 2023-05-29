@@ -4,15 +4,14 @@
     <div class="container-fluid" id="aboutInforratica">
         <div class="container container_item">
             <div class="row">
-                <div class="col-md-6">
-                    <img class="img-fluid" src="@/assets/notebooks.png">
+                <div class="col-md-6" id="divLeft">
+                    <img class="img-fluid" src="@/assets/img/PC.png">
                 </div>
                 <div class="col-md-6 row">
                     <div>
-                        <h3 class="fs-1">Nós temos a solução</h3>
+                        <h3 class="fs-1">Computadores Gamers</h3>
                         <p class="fs-5 text">
-                            Consertamos computadores e notebooks de diversas marcas como Apple, Dell, HP, Sony, Acer, Lenovo, Asus, Toshiba, Samsung entre outras! Nossos técnicos são profissionais experientes na solução dos mais diversos problemas de hardware.
-                            Além disso, nossos serviços também englobam a formatação e reinstalação de sistemas operacionais, remoção de vírus, troca de peças, limpeza interna, entre outros.
+                            Também somos expecialistas em computadores gamers de alta performace. Sua máquina irá voltar novinha em folha e pronta para rodar os jogos mais pesados do mercado.
                         </p>
                     </div>
                 </div>
@@ -26,7 +25,6 @@
 .container-fluid {
     position: relative;
     padding-top: 50px;
-    padding-bottom: 50px;
 }
 
 .col-md-6 {
@@ -35,9 +33,15 @@
     margin: 0;
 }
 
+#divLeft {
+    background-image: url("@/assets/img/PaintLeft.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
 img {
-    width: 90%;
-    height: 90%;
+    width: 100%;
+    height: 100%;
 }
 
 </style>

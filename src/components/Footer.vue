@@ -57,7 +57,7 @@
 <style scoped>
 
 .container-fluid {
-  background-image: url(@/assets/imgfooter.png);
+  background-image: url("@/assets/img/imgfooter.png");
   padding: 0;
   background-attachment: fixed;
   background-position: center;

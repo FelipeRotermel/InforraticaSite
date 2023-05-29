@@ -16,7 +16,7 @@ app.use(vueScrollto, {
     container: "body",
     duration: 100,
     easing: "ease",
-    offset: -55,
+    offset: -45,
     force: true,
     cancelable: true,
     onStart: false,

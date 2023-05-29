@@ -28,7 +28,7 @@
 }
 
 .carousel {
-    background-image: url(@/assets/bgintro.png);
+    background-image: url("@/assets/img/bgintro.png");
     min-height: 500px;
     background-attachment: fixed;
     background-position: center;

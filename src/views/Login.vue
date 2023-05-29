@@ -10,7 +10,7 @@
             <div class="col-lg-6">
               <div class="card-body p-md-3 mx-md-4">
                 <div class="text-center">
-                  <img src="@/assets/logo.png" id="logo">
+                  <img src="@/assets/img/logo.png" id="logo">
                   <h4 class="mt-1 mb-5 pb-1">INFORRATICA</h4>
                 </div>
                 <form>
@@ -52,7 +52,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("@/assets/bgintro.png");
+  background-image: url("@/assets/img/bgintro.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

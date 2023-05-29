@@ -11,7 +11,7 @@
                     <div>
                         <h3 class="fs-1">Nós temos a solução</h3>
                         <p class="fs-5 text">
-                            Consertamos computadores e notebooks de diversas marcas como Apple, Dell, HP, Sony, Acer, Lenovo, Asus, Toshiba, Samsung entre outras!.Além disso, nossos serviços também englobam a formatação e reinstalação de sistemas operacionais, remoção de vírus, troca de peças, limpeza interna, entre outros.
+                            Consertamos computadores e notebooks de diversas marcas como Apple, Dell, HP, Sony, Acer, Lenovo, Asus, Toshiba, Samsung entre outras!. Além disso, nossos serviços também englobam a formatação e reinstalação de sistemas operacionais, remoção de vírus, troca de peças, limpeza interna, entre outros.
                         </p>
                     </div>
                 </div>

@@ -20,6 +20,9 @@
                     <li class="nav-item">
                         <a class="nav-link" v-scroll-to="'#marcas'">Marcas</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" v-scroll-to="'#FAQ'">Perguntas</a>
+                    </li>
                 </ul>
             </div>
             <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">

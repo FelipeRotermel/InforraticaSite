@@ -1,6 +1,9 @@
-<script></script>
+<script setup>
+import NavBarSec from '@/components/NavBarSec.vue'
+</script>
 
 <template>
+  <header><NavBarSec /></header>
   <div class="background-image"></div>
   <div class="container-fluid">
     <div class="row d-flex justify-content-center align-items-center" id="main">
@@ -25,7 +28,6 @@
                   <div class="text-center pt-1 mb-5 pb-1">
                     <button class="btn btn-primary btn-block fa-lg mb-3" type="button">Login</button>
                   </div>
-                  <a><router-link to="/">Home</router-link></a>
                 </form>
               </div>
             </div>
@@ -44,6 +46,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  margin-top: 2%;
 }
 
 .background-image {

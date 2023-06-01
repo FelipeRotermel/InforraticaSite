@@ -4,7 +4,7 @@ import NavBarSec from '@/components/NavBarSec.vue'
 </script>
 
 <template>
-  <header><NavBarSec /></header>
+  <header> <NavBarSec /> </header>
   <section class="text-center">
     <div
       class="card p-5 mb-3"

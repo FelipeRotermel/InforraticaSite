@@ -3,7 +3,7 @@ import NavBarSec from '@/components/NavBarSec.vue'
 </script>
 
 <template>
-  <header><NavBarSec /></header>
+  <header> <NavBarSec /> </header>
   <div class="background-image"></div>
   <div class="container-fluid">
     <div class="row d-flex justify-content-center align-items-center" id="main">

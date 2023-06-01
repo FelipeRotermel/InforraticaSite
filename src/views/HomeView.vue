@@ -4,8 +4,10 @@
   import AboutInforratica from '@/components/AboutInforratica.vue';
   import CarouselLogos from '@/components/CarouselLogos.vue';
   import AboutBrands from '@/components/AboutBrands.vue';
-  import Footer from '@/components/Footer.vue';
+  import AboutPc from '@/components/AboutPc.vue';
+  import FAQ from '@/components/FAQ.vue';
   import ZaWarudo from '@/components/ZaWarudo.vue';
+  import Footer from '@/components/Footer.vue';
 </script>
 
 <template>
@@ -14,6 +16,8 @@
     <AboutInforratica />
     <CarouselLogos />
     <AboutBrands />
+    <AboutPc />
+    <FAQ />
     <ZaWarudo />
     <Footer />
 </template>

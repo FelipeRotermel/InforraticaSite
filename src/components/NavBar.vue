@@ -4,10 +4,10 @@
     <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
         <div class="container-fluid">
             <a class="navbar-brand text-light" href="#" aria-current="page">
-                <router-link to="/"><img src="@/assets/logo.png" class="logo">Inforratica</router-link>
+                <router-link to="/"><img src="@/assets/img/logo.png" class="logo">Inforratica</router-link>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <img src="@/assets/bars-solid.png" class="bars" alt="">
+                <img src="@/assets/img/bars-solid.png" class="bars" alt="">
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
                 <ul class="navbar-nav mb-3 mb-lg-0">
@@ -16,6 +16,12 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" v-scroll-to="'#aboutInforratica'">Sobre a Inforratica</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" v-scroll-to="'#marcas'">Marcas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" v-scroll-to="'#FAQ'">Perguntas</a>
                     </li>
                 </ul>
             </div>

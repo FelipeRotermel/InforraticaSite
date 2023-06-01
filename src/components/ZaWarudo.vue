@@ -37,7 +37,7 @@ export default {
 <template>
   <div class="container">
     <button ref="invisibleButton" @click="handleButtonClick">
-      <img ref="image" src="@/assets/dio.webp" alt="Imagem" />
+      <img ref="image" src="@/assets/img/dio.webp" alt="Imagem" />
       <audio ref="audioPlayer">
         <source src="@/assets/ZaWarudo.mp3" type="audio/mpeg" />
       </audio>

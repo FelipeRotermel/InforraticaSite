@@ -1,9 +1,9 @@
 <script setup>
-import NavBarSec from '@/components/NavBarSec.vue'
+  import NavBarLogin from '@/components/NavBarLogin.vue'
 </script>
 
 <template>
-  <header> <NavBarSec /> </header>
+  <NavBarLogin />
   <div class="background-image"></div>
   <div class="container-fluid">
     <div class="row d-flex justify-content-center align-items-center" id="main">
@@ -46,7 +46,6 @@ import NavBarSec from '@/components/NavBarSec.vue'
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  margin-top: 2%;
 }
 
 .background-image {

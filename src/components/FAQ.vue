@@ -55,8 +55,7 @@ hr {
 i {
     background-color: #212731;
     color: white;   
-    padding-left: 4px;
-    padding-right: 3px;
+    padding: 4px;
     border-radius: 10px;
 }
 

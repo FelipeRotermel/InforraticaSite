@@ -1,6 +1,6 @@
 <script setup>
-  import NavBarOrdem from '@/components/NavBarOrdem.vue'
-  import PcCard from '@/components/PcCard.vue'
+  import NavBarOrdem from '@/components/nav/NavBarOrdem.vue'
+  import PcCard from '@/components/ordemservico/PcCard.vue'
 </script>
 
 <template>

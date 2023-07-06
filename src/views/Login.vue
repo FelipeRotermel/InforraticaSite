@@ -1,5 +1,5 @@
 <script setup>
-  import NavBarLogin from '@/components/NavBarLogin.vue'
+  import NavBarLogin from '@/components/nav/NavBarLogin.vue'
 </script>
 
 <template>

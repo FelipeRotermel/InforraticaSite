@@ -1,4 +1,4 @@
-<script setup>
+<script>
   import NavBarOrdem from '@/components/nav/NavBarOrdem.vue'
   import PcCard from '@/components/ordemservico/PcCard.vue'
 </script>

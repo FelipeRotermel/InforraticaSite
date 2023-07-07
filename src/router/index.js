@@ -20,9 +20,9 @@ const router = createRouter({
       component: () => import('../views/OrdemServico.vue')
     },
     {
-      path: '/cadastro-ordem-servico',
-      name: 'cadastro-ordem-servico',
-      component: () => import('../views/CadastroOrdemServico.vue')
+      path: '/cadastro-computador',
+      name: 'cadastro-computador',
+      component: () => import('../views/CadastroComputador.vue')
     },
   ]
 })

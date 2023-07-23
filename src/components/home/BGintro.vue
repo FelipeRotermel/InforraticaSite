@@ -46,7 +46,7 @@
 }
 
 .text {
-    margin-bottom: 7%;
+    margin-bottom: 5%;
 }
 
 h1, h5 {

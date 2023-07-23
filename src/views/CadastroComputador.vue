@@ -1,15 +1,11 @@
 <script>
 import ComputadoresApi from '@/api/computadores.js'
 import NavBar from '@/components/nav/NavBarOrdem.vue'
-import ColLeft from '@/components/cadastrocomputador/ColLeft.vue'
-import ColRight from '@/components/cadastrocomputador/ColRight.vue'
 
 const computadoresApi = new ComputadoresApi();
 export default {
   components: {
-    NavBar,
-    ColLeft,
-    ColRight
+    NavBar
   },
   data() {
     return {
@@ -179,6 +175,7 @@ export default {
                     <th scope="col">Fonte</th>
                     <th scope="col">Gabinete</th>
                     <th scope="col">Imagem</th>
+                    <th scope="col" id="action">Ações</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -192,7 +189,12 @@ export default {
                     <td>{{ computador.cooler }}</td>
                     <td>{{ computador.fonte }}</td>
                     <td>{{ computador.gabinete }}</td>
-                    <td><img :src="computador.imagem" alt="" width="100px"></td>
+                    <td><img :src="computador.imagem" alt=""></td>
+                    <td>
+                      <button class="col-1 btn btn-danger" @click="excluir(computador)">Del</button>
+                      <div class="w-100" id="separate"></div>
+                      <button class="col-1 btn btn-warning" @click="editar(computador)">Edit</button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -266,7 +268,6 @@ button {
 table {
   border-collapse: collapse;
   border-spacing: 0;
-  height: 40vh;
   border: 1px solid #ddd;
 }
 
@@ -282,11 +283,24 @@ th {
 }
 
 td {
-  width: 300px;
+  text-align: center;
+  border: 1px solid #ddd;
 }
 
 img {
   width: 100px;
+}
+
+#action {
+  width: 5%;
+}
+
+.col-1 {
+  width: 100%;
+}
+
+#separate {
+  height: 20px;
 }
 
 </style>

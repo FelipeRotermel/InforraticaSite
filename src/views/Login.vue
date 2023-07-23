@@ -1,5 +1,11 @@
 <script>
   import NavBarLogin from '@/components/nav/NavBarLogin.vue'
+
+  export default {
+    components: {
+      NavBarLogin
+    },
+  }
 </script>
 
 <template>

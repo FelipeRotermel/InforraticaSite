@@ -1,4 +1,4 @@
-<script>
+<script setup>
   import NavBar from '@/components/nav/NavBar.vue'
   import BGintro from '@/components/home/BGintro.vue'
   import AboutInforratica from '@/components/home/AboutInforratica.vue';

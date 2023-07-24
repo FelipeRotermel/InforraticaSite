@@ -11,7 +11,34 @@ export default {
     return {
       computadores: [],
       computador: {},
+      selectedFilter: 'placa_mae',
+      filters: {
+        computador: {
+          placa_mae: '',
+          processador: '',
+          memoria_ram: '',
+          placa_de_video: '',
+          ssd: '',
+          hd: '',
+          cooler: '',
+          fonte: '',
+          gabinete: '',
+          imagem: ''
+        }
+      },
+      filterOptions: ['placa_mae', 'processador', 'memoria_ram', 'placa_de_video', 'ssd', 'hd', 'cooler', 'fonte', 'gabinete']
     };
+  },
+  computed: {
+    filteredComputadores() {
+      if (this.selectedFilter !== '') {
+        return this.computadores.filter(computador =>
+          computador[this.selectedFilter].includes(this.filters.computador[this.selectedFilter])
+        );
+      } else {
+        return this.computadores;
+      }
+    }
   },
   async created() {
     this.computadores = await computadoresApi.buscarTodosOsComputadores();
@@ -161,8 +188,22 @@ export default {
       <div class="row g-0">
         <div class="col-md-12">
           <div class="card-body">
+            <div class="input-group mb-3">
+              <select class="input-group-text" v-model="selectedFilter">
+                <option value="placa_mae">Placa-Mãe</option>
+                <option value="processador">Processador</option>
+                <option value="memoria_ram">Memória</option>
+                <option value="placa_de_video">Placa de Vídeo</option>
+                <option value="ssd">SSD</option>
+                <option value="hd">HD</option>
+                <option value="cooler">Cooler</option>
+                <option value="fonte">Fonte</option>
+                <option value="gabinete">Gabinete</option>
+              </select>
+              <input v-if="selectedFilter" type="text" class="form-control" :placeholder="'Pesquisar ' + selectedFilter" v-model="filters.computador[selectedFilter]">
+            </div>
             <div class="table-responsive">
-              <table class="table">
+              <table class="table" id="myTable">
                 <thead>
                   <tr>
                     <th scope="col">Placa-Mãe</th>
@@ -179,7 +220,7 @@ export default {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="computador in computadores" :key="computador.id">
+                  <tr v-for="computador in filteredComputadores" :key="computador.id">
                     <td>{{ computador.placa_mae }}</td>
                     <td>{{ computador.processador }}</td>
                     <td>{{ computador.memoria_ram }}</td>

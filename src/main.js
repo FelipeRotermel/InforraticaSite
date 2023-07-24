@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import "@/utils/navbar.js";
-import "@/utils/carousel.js";
+import "@/utils/tablefilter.js";
 import vueScrollto from 'vue-scrollto';
 
 import { createApp } from 'vue'

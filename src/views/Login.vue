@@ -1,4 +1,4 @@
-<script>
+<script setup>
   import NavBarLogin from '@/components/nav/NavBarLogin.vue'
 </script>
 

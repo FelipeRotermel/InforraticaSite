@@ -1,4 +1,4 @@
-<script>
+<script setup>
   import NavBarOrdem from '@/components/nav/NavBarOrdem.vue'
   import PcCard from '@/components/ordemservico/PcCard.vue'
 </script>
@@ -7,8 +7,6 @@
   <NavBarOrdem />
   <div class="background-image"></div>
   <div class="container-fluid">
-    <PcCard />
-    <PcCard />
     <PcCard />
   </div>
 </template>

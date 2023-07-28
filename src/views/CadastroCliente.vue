@@ -4,40 +4,40 @@ import NavBar from '@/components/nav/NavBarOrdem.vue'
 
 const clientesApi = new ClientesApi();
 
-export function validarCPF(cpf) {
-  cpf = cpf.replace(/\D/g, ''); // Remove caracteres não numéricos
-  if (cpf.length !== 11) {
-    return false;
-  }
+// export function validarCPF(cpf) {
+//   cpf = cpf.replace(/\D/g, ''); // Remove caracteres não numéricos
+//   if (cpf.length !== 11) {
+//     return false;
+//   }
 
-  // Verifica se todos os dígitos são iguais (caso comum de CPFs inválidos)
-  if (/^(\d)\1+$/.test(cpf)) {
-    return false;
-  }
+//   // Verifica se todos os dígitos são iguais (caso comum de CPFs inválidos)
+//   if (/^(\d)\1+$/.test(cpf)) {
+//     return false;
+//   }
 
-  // Calcula o primeiro dígito verificador
-  let sum = 0;
-  for (let i = 0; i < 9; i++) {
-    sum += parseInt(cpf.charAt(i)) * (10 - i);
-  }
-  let remainder = sum % 11;
-  let digit1 = remainder < 2 ? 0 : 11 - remainder;
+//   // Calcula o primeiro dígito verificador
+//   let sum = 0;
+//   for (let i = 0; i < 9; i++) {
+//     sum += parseInt(cpf.charAt(i)) * (10 - i);
+//   }
+//   let remainder = sum % 11;
+//   let digit1 = remainder < 2 ? 0 : 11 - remainder;
 
-  // Calcula o segundo dígito verificador
-  sum = 0;
-  for (let i = 0; i < 10; i++) {
-    sum += parseInt(cpf.charAt(i)) * (11 - i);
-  }
-  remainder = sum % 11;
-  let digit2 = remainder < 2 ? 0 : 11 - remainder;
+//   // Calcula o segundo dígito verificador
+//   sum = 0;
+//   for (let i = 0; i < 10; i++) {
+//     sum += parseInt(cpf.charAt(i)) * (11 - i);
+//   }
+//   remainder = sum % 11;
+//   let digit2 = remainder < 2 ? 0 : 11 - remainder;
 
-  // Verifica se os dígitos verificadores estão corretos
-  if (parseInt(cpf.charAt(9)) !== digit1 || parseInt(cpf.charAt(10)) !== digit2) {
-    return false;
-  }
+//   // Verifica se os dígitos verificadores estão corretos
+//   if (parseInt(cpf.charAt(9)) !== digit1 || parseInt(cpf.charAt(10)) !== digit2) {
+//     return false;
+//   }
 
-  return true;
-}
+//   return true;
+// }
 
 export default {
   components: {
@@ -58,10 +58,10 @@ export default {
   },
   methods: {
     async salvar() {
-      if (!validarCPF(this.cliente.cpf)) {
-      this.cpfErrorMessage = 'CPF inválido';
-      return;
-    }
+    //   if (!validarCPF(this.cliente.cpf)) {
+    //   this.cpfErrorMessage = 'CPF inválido';
+    //   return;
+    // }
       if (this.cliente.id) {
         await clientesApi.atualizarCliente(this.cliente);
       } else {
@@ -181,19 +181,24 @@ export default {
   height: 100vh;
   padding-top: 5%;
 }
+
+#basic-addon1 {
+  border: none;
+}
+
+#bt {
+  margin: 5px;
+}
+
+.is-invalid {
+  border-color: red;
+  color: red;
+}
+
 @media screen and (max-width: 767px) {
   .container-fluid {
     padding-top: 25%;
   }
 }
-#basic-addon1 {
-    border: none;
-}
-#bt {
-  margin: 5px;
-}
-.is-invalid {
-  border-color: red;
-  color: red;
-}
+
 </style>

@@ -22,7 +22,7 @@ export default class ComputadoresApi {
 
   async atualizarComputador(computador) {
     const response = await axios.put(
-      `http://localhost:8000/computadores/${computador.id}`,
+      `http://localhost:8000/computadores/${computador.id}/`,
       computador
     );
     return response.data;

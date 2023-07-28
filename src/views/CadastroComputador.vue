@@ -1,21 +1,43 @@
 <script>
 import ComputadoresApi from '@/api/computadores.js'
 import NavBar from '@/components/nav/NavBarOrdem.vue'
-import ColLeft from '@/components/cadastrocomputador/ColLeft.vue'
-import ColRight from '@/components/cadastrocomputador/ColRight.vue'
-
 const computadoresApi = new ComputadoresApi();
 export default {
   components: {
-    NavBar,
-    ColLeft,
-    ColRight
+    NavBar
   },
   data() {
     return {
       computadores: [],
       computador: {},
+      selectedFilter: 'placa_mae',
+      filters: {
+        computador: {
+          placa_mae: '',
+          processador: '',
+          memoria_ram: '',
+          placa_de_video: '',
+          ssd: '',
+          hd: '',
+          cooler: '',
+          fonte: '',
+          gabinete: '',
+          imagem: ''
+        }
+      },
+      filterOptions: ['placa_mae', 'processador', 'memoria_ram', 'placa_de_video', 'ssd', 'hd', 'cooler', 'fonte', 'gabinete']
     };
+  },
+  computed: {
+    filteredComputadores() {
+      if (this.selectedFilter !== '') {
+        return this.computadores.filter(computador =>
+          computador[this.selectedFilter].includes(this.filters.computador[this.selectedFilter])
+        );
+      } else {
+        return this.computadores;
+      }
+    }
   },
   async created() {
     this.computadores = await computadoresApi.buscarTodosOsComputadores();
@@ -40,7 +62,6 @@ export default {
   },
 };
 </script>
-
 <template>
   <NavBar />
   <div class="container-fluid">
@@ -165,8 +186,22 @@ export default {
       <div class="row g-0">
         <div class="col-md-12">
           <div class="card-body">
+            <div class="input-group mb-3">
+              <select class="input-group-text" v-model="selectedFilter">
+                <option value="placa_mae">Placa-Mãe</option>
+                <option value="processador">Processador</option>
+                <option value="memoria_ram">Memória</option>
+                <option value="placa_de_video">Placa de Vídeo</option>
+                <option value="ssd">SSD</option>
+                <option value="hd">HD</option>
+                <option value="cooler">Cooler</option>
+                <option value="fonte">Fonte</option>
+                <option value="gabinete">Gabinete</option>
+              </select>
+              <input v-if="selectedFilter" type="text" class="form-control" :placeholder="'Pesquisar ' + selectedFilter" v-model="filters.computador[selectedFilter]">
+            </div>
             <div class="table-responsive">
-              <table class="table">
+              <table class="table" id="myTable">
                 <thead>
                   <tr>
                     <th scope="col">Placa-Mãe</th>
@@ -179,10 +214,11 @@ export default {
                     <th scope="col">Fonte</th>
                     <th scope="col">Gabinete</th>
                     <th scope="col">Imagem</th>
+                    <th scope="col" id="action">Ações</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="computador in computadores" :key="computador.id">
+                  <tr v-for="computador in filteredComputadores" :key="computador.id">
                     <td>{{ computador.placa_mae }}</td>
                     <td>{{ computador.processador }}</td>
                     <td>{{ computador.memoria_ram }}</td>
@@ -192,7 +228,12 @@ export default {
                     <td>{{ computador.cooler }}</td>
                     <td>{{ computador.fonte }}</td>
                     <td>{{ computador.gabinete }}</td>
-                    <td><img :src="computador.imagem" alt="" width="100px"></td>
+                    <td><img :src="computador.imagem" alt=""></td>
+                    <td>
+                      <button class="col-1 btn btn-danger" @click="excluir(computador)">Del</button>
+                      <div class="w-100" id="separate"></div>
+                      <button class="col-1 btn btn-warning" @click="editar(computador)">Edit</button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -203,7 +244,6 @@ export default {
     </div>
   </div>
 </template>
-
 <style scoped>
 .container-fluid {
   justify-content: center;
@@ -211,17 +251,14 @@ export default {
   height: 100vh;
   padding-top: 5%;
 }
-
 @media screen and (max-width: 767px) {
   .container-fluid {
     padding-top: 25%;
   }
 }
-
 .row {
   height: 100%;
 }
-
 .custom-file-upload {
   display: inline-block;
   padding: 8px 12px;
@@ -234,59 +271,56 @@ export default {
   width: 80%;
   height: 50vh;
 }
-
 @media screen and (max-width: 767px) {
   .custom-file-upload {
     height: 100px;
   }
 }
-
 .custom-file-upload i {
   margin-right: 8px;
 }
-
 input[type="file"] {
   display: none;
 }
-
 button {
   width: 20%;
 }
-
 #computadores {
   margin-top: 5vh;
 }
-
 @media screen and (max-width: 767px) {
   #computadores {
     margin-top: 50vh;
   }
 }
-
 table {
   border-collapse: collapse;
   border-spacing: 0;
-  height: 40vh;
   border: 1px solid #ddd;
 }
-
 @media screen and (max-width: 767px) {
   table {
     width: 800px;
   }
 }
-
 th {
   background-color: #b6b6b6;
   color: white;
 }
-
 td {
-  width: 300px;
+  text-align: center;
+  border: 1px solid #ddd;
 }
-
 img {
   width: 100px;
 }
-
+#action {
+  width: 5%;
+}
+.col-1 {
+  width: 100%;
+}
+#separate {
+  height: 20px;
+}
 </style>

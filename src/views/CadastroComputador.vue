@@ -68,7 +68,7 @@ export default {
     <div class="row d-flex align-items-center justify-content-center">
       <div class="col-md-5 col-12">
         <div class="mb-3">
-          <label for="basic-url" class="form-label">Placa-mãe:</label>
+          <label class="form-label">Placa-mãe:</label>
           <div class="input-group">
             <span class="input-group-text" id="basic-addon3"><i class="bi bi-motherboard"></i></span>
             <input type="text" class="form-control" 
@@ -79,7 +79,7 @@ export default {
           </div>
         </div>
         <div class="mb-3">
-          <label for="basic-url" class="form-label">Processador:</label>
+          <label class="form-label">Processador:</label>
           <div class="input-group">
             <span class="input-group-text" id="basic-addon3"><i class="bi bi-cpu"></i></span>
             <input type="text" class="form-control" 
@@ -90,7 +90,7 @@ export default {
           </div>
         </div>
         <div class="mb-3">
-          <label for="basic-url" class="form-label">Memória RAM:</label>
+          <label class="form-label">Memória RAM:</label>
           <div class="input-group">
             <span class="input-group-text" id="basic-addon3"><i class="bi bi-memory"></i></span>
             <input type="text" class="form-control" 
@@ -101,7 +101,7 @@ export default {
           </div>
         </div>
         <div class="mb-3">
-          <label for="basic-url" class="form-label">SSD:</label>
+          <label class="form-label">SSD:</label>
           <div class="input-group">
             <span class="input-group-text" id="basic-addon3"><i class="bi bi-device-hdd"></i></span>
             <input type="text" class="form-control" 
@@ -112,7 +112,7 @@ export default {
           </div>
         </div>
         <div class="mb-3">
-          <label for="basic-url" class="form-label">HD:</label>
+          <label class="form-label">HD:</label>
           <div class="input-group">
             <span class="input-group-text" id="basic-addon3"><i class="bi bi-device-hdd"></i></span>
             <input type="text" class="form-control" 
@@ -123,9 +123,9 @@ export default {
           </div>
         </div>
       </div>
-      <div class="col-md-5 col-12">
+      <div class="col-md-5">
         <div class="mb-3">
-          <label for="basic-url" class="form-label">Cooler:</label>
+          <label class="form-label">Cooler:</label>
           <div class="input-group">
             <span class="input-group-text" id="basic-addon3"><i class="bi bi-fan"></i></span>
             <input type="text" class="form-control" 
@@ -136,7 +136,7 @@ export default {
           </div>
         </div>
         <div class="mb-3">
-          <label for="basic-url" class="form-label">Placa de Vídeo:</label>
+          <label class="form-label">Placa de Vídeo:</label>
           <div class="input-group">
             <span class="input-group-text" id="basic-addon3"><i class="bi bi-cpu"></i></span>
             <input type="text" class="form-control" 
@@ -147,7 +147,7 @@ export default {
           </div>
         </div>
         <div class="mb-3">
-          <label for="basic-url" class="form-label">Fonte:</label>
+          <label class="form-label">Fonte:</label>
           <div class="input-group">
             <span class="input-group-text" id="basic-addon3"><i class="bi bi-outlet"></i></span>
             <input type="text" class="form-control" 
@@ -158,7 +158,7 @@ export default {
           </div>
         </div>
         <div class="mb-3">
-          <label for="basic-url" class="form-label">Gabinete:</label>
+          <label class="form-label">Gabinete:</label>
           <div class="input-group">
             <span class="input-group-text" id="basic-addon3"><i class="bi bi-pc"></i></span>
             <input type="text" class="form-control" 
@@ -169,7 +169,7 @@ export default {
           </div>
         </div>
         <div class="mb-3">
-          <label for="basic-url" class="form-label">Imagem:</label>
+          <label class="form-label">Imagem:</label>
           <div class="input-group">
             <span class="input-group-text" id="basic-addon3"><i class="bi bi-card-image"></i></span>
             <input type="text" class="form-control" 
@@ -201,7 +201,7 @@ export default {
               <input v-if="selectedFilter" type="text" class="form-control" :placeholder="'Pesquisar ' + selectedFilter" v-model="filters.computador[selectedFilter]">
             </div>
             <div class="table-responsive">
-              <table class="table" id="myTable">
+              <table class="table">
                 <thead>
                   <tr>
                     <th scope="col">Placa-Mãe</th>
@@ -251,33 +251,8 @@ export default {
   height: 100vh;
   padding-top: 5%;
 }
-@media screen and (max-width: 767px) {
-  .container-fluid {
-    padding-top: 25%;
-  }
-}
 .row {
   height: 100%;
-}
-.custom-file-upload {
-  display: inline-block;
-  padding: 8px 12px;
-  cursor: pointer;
-  background-color: #f1f1f1;
-  color: #333;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-  width: 80%;
-  height: 50vh;
-}
-@media screen and (max-width: 767px) {
-  .custom-file-upload {
-    height: 100px;
-  }
-}
-.custom-file-upload i {
-  margin-right: 8px;
 }
 input[type="file"] {
   display: none;
@@ -288,23 +263,13 @@ button {
 #computadores {
   margin-top: 5vh;
 }
-@media screen and (max-width: 767px) {
-  #computadores {
-    margin-top: 50vh;
-  }
-}
 table {
   border-collapse: collapse;
   border-spacing: 0;
   border: 1px solid #ddd;
 }
-@media screen and (max-width: 767px) {
-  table {
-    width: 800px;
-  }
-}
 th {
-  background-color: #b6b6b6;
+  background-color: #212731;
   color: white;
 }
 td {
@@ -322,5 +287,16 @@ img {
 }
 #separate {
   height: 20px;
+}
+@media screen and (max-width: 767px) {
+  .container-fluid {
+    padding-top: 25%;
+  }
+  table {
+    width: 800px;
+  }
+  #computadores {
+    margin-top: 35vh;
+  }
 }
 </style>

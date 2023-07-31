@@ -86,55 +86,70 @@ export default {
 <template>
 <NavBar />
 <div class="container-fluid">
-    <div class="row d-flex justify-content-center align-items-center" id="main">
-      <div class="col-xl-6">
-        <div class="card">
-          <div class="row g-0" id="content">
-            <div class="col-lg-12">
-              <div class="card-body p-md-3 mx-md-4">
-                <form>
-                  <div class="form-outline mb-4">
-                    <div class="input-group">
-                        <span class="input-group-text" id="basic-addon1"><img src="https://cdn-icons-png.flaticon.com/512/552/552721.png" alt="" style="height: 20px; width: 20px;"></span>
-                        <input class="form-control" v-model="cliente.nome" type="text" placeholder="Nome">
-                    </div>
-                  </div>
-                  <div class="form-outline mb-4">
-                    <div class="input-group">
-                        <span class="input-group-text" id="basic-addon1"><img src="https://cdn-icons-png.flaticon.com/128/542/542689.png" alt="" style="height: 20px; width: 20px;"></span>
-                        <input class="form-control" v-model="cliente.email" type="text" placeholder="Email">
-                    </div>
-                  </div>
-                  <div class="form-outline mb-4">
-                    <div class="input-group">
-                        <span class="input-group-text" id="basic-addon1"><img src="https://cdn0.iconfinder.com/data/icons/essentials-solid-glyphs-vol-1/100/Phone-Call-Telephone-512.png" alt="" style="height: 20px; width: 20px;"></span>
-                        <input class="form-control" v-model="cliente.telefone" type="number" placeholder="Telefone/Celular">
-                    </div>
-                  </div>    
-                  <div class="form-outline mb-4">
-                    <div class="input-group">
-                        <span class="input-group-text" id="basic-addon1"><img src="https://img.freepik.com/free-icon/placeholder_318-903608.jpg" alt="" style="height: 20px; width: 20px;"></span>
-                        <input class="form-control" v-model="cliente.endereco" type="text" placeholder="Endereço">
-                    </div>
-                  </div>
-                  <div class="form-outline mb-4">
-                    <div class="input-group">
-                    <span class="input-group-text" id="basic-addon1"><img src="https://cdn.icon-icons.com/icons2/1238/PNG/512/identitycard_83864.png" alt="" style="height: 20px; width: 20px;"></span>
-                    <input class="form-control" :class="{ 'is-invalid': cpfErrorMessage }" v-model="cliente.cpf" type="text" :placeholder="cpfErrorMessage ? cpfErrorMessage : 'CPF'" @focus="limparErroCPF">
-                  </div>
-                  <span v-if="cpfErrorMessage" class="text-danger">{{ cpfErrorMessage }}</span>
-                  </div>
-                  <div class="text-center pt-1 mb-5 pb-1">
-                    <button class="btn btn-primary btn-block fa-lg mb-3" type="button" @click="salvar" value="">Cadastrar</button>
-                  </div>
-                </form>
+    <div class="row d-flex align-items-center justify-content-center" id="main">
+      <div class="col-md-3 col-12"></div>
+      <div class="col-md-6 col-12">
+              <div class="mb-3">
+                <label class="form-label">Nome:</label>
+                <div class="input-group">
+                  <span class="input-group-text" id="basic-addon3"><i class="bi bi-person"></i></span>
+                  <input type="text" class="form-control"
+                    @keyup.enter="salvar" 
+                    v-model="cliente.nome"
+                    placeholder="Nome - Sobrenome"
+                  >
+                </div>
               </div>
-            </div>
-          </div> 
+              <div class="mb-3">
+                <label class="form-label">CPF:</label>
+                <div class="input-group">
+                  <span class="input-group-text" id="basic-addon3"><i class="bi bi-person-vcard"></i></span>
+                  <input type="text" class="form-control"
+                    @keyup.enter="salvar" 
+                    v-model="cliente.cpf"
+                    placeholder="99999999999"
+                  >
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Email:</label>
+                <div class="input-group">
+                  <span class="input-group-text" id="basic-addon3"><i class="bi bi-envelope"></i></span>
+                  <input type="text" class="form-control"
+                    @keyup.enter="salvar" 
+                    v-model="cliente.email"
+                    placeholder="nome@gmail.com"
+                  >
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Telefone:</label>
+                <div class="input-group">
+                  <span class="input-group-text" id="basic-addon3"><i class="bi bi-telephone"></i></span>
+                  <input type="text" class="form-control"
+                    @keyup.enter="salvar" 
+                    v-model="cliente.telefone"
+                    placeholder="(99) 99999-9999"
+                  >
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Endereço:</label>
+                <div class="input-group">
+                  <span class="input-group-text" id="basic-addon3"><i class="bi bi-geo-alt"></i></span>
+                  <input type="text" class="form-control"
+                    @keyup.enter="salvar" 
+                    v-model="cliente.endereco"
+                    placeholder="Núm.Casa, Rua, Bairro, Cidade"
+                  >
+                </div>
+              </div>
+          </div>
+          <div class="col-md-3 col-12"></div>
+          <button class="btn btn-success" @click="salvar">Salvar</button>
         </div>
-      </div>
     </div>
-    <div class="col-12" id="computadores">
+    <div class="col-12">
       <div class="row g-0">
         <div class="col-md-12">
           <div class="card-body">
@@ -147,7 +162,7 @@ export default {
                             <th scope="col">Telefone</th>
                             <th scope="col">Endereço</th>
                             <th scope="col">CPF</th>
-                            <th scope="col">Açoes</th>
+                            <th scope="col" id="action">Ações</th>
                         </tr>
                         </thead>
                 <tbody>
@@ -158,8 +173,9 @@ export default {
                     <td>{{ cliente.endereco }}</td>
                     <td>{{ cliente.cpf }}</td>
                     <td>
-                      <button @click="excluir(cliente)" id="bt" class="btn btn-danger">Excluir</button>
-                      <button @click="editar(cliente)" id="bt" class="btn btn-warning">Editar</button>
+                      <button @click="excluir(cliente)" class="col-1 btn btn-danger">Del</button>
+                      <div class="w-100" id="separate"></div>
+                      <button @click="editar(cliente)" class="col-1 btn btn-warning">Edit</button>
                     </td>
                   </tr>
                 </tbody>
@@ -169,7 +185,6 @@ export default {
             </div>
         </div>
     </div>
-  </div>
   </div>
 
 </template>
@@ -182,12 +197,36 @@ export default {
   padding-top: 5%;
 }
 
-#basic-addon1 {
-  border: none;
+.row {
+  height: 100%;
 }
 
-#bt {
-  margin: 5px;
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #212731;
+  color: white;
+}
+
+td {
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+button {
+  width: 20%;
+}
+
+#action {
+  width: 5%;
+}
+
+#separate {
+  height: 20px;
 }
 
 .is-invalid {
@@ -195,9 +234,16 @@ export default {
   color: red;
 }
 
+.col-1 {
+  width: 100%;
+}
+
 @media screen and (max-width: 767px) {
   .container-fluid {
     padding-top: 25%;
+  }
+  table {
+    width: 800px;
   }
 }
 

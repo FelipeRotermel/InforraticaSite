@@ -251,43 +251,55 @@ export default {
   height: 100vh;
   padding-top: 5%;
 }
+
 .row {
   height: 100%;
 }
+
 input[type="file"] {
   display: none;
 }
+
 button {
   width: 20%;
 }
+
 #computadores {
   margin-top: 5vh;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
   border: 1px solid #ddd;
 }
+
 th {
   background-color: #212731;
   color: white;
 }
+
 td {
   text-align: center;
   border: 1px solid #ddd;
 }
+
 img {
   width: 100px;
 }
+
 #action {
   width: 5%;
 }
+
 .col-1 {
   width: 100%;
 }
+
 #separate {
   height: 20px;
 }
+
 @media screen and (max-width: 767px) {
   .container-fluid {
     padding-top: 25%;

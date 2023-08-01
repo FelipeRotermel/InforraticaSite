@@ -47,11 +47,31 @@ export default {
   data() {
     return {
       clientes: [],
-      cliente: {
-        cpf:''
-      },
+      cliente: {},
       cpfErrorMessage: '',
+      selectedFilter: 'nome',
+      filters: {
+        cliente: {
+          nome: '',
+          cpf: '',
+          email: '',
+          telefone: '',
+          endereco: ''
+        }
+    },
+    filterOptions: ['nome', 'cpf', 'email', 'telefone', 'endereco']
     };
+  },
+  computed: {
+    filteredClientes() {
+      if (this.selectedFilter !== '') {
+        return this.clientes.filter(cliente =>
+          cliente[this.selectedFilter].includes(this.filters.cliente[this.selectedFilter])
+        );
+      } else {
+        return this.clientes;
+      }
+    }
   },
   async created() {
     this.clientes = await clientesApi.buscarTodosOsClientes();
@@ -84,89 +104,98 @@ export default {
 };
 </script>
 <template>
-<NavBar />
-<div class="container-fluid">
+  <NavBar />
+  <div class="container-fluid">
     <div class="row d-flex align-items-center justify-content-center" id="main">
       <div class="col-md-3 col-12"></div>
       <div class="col-md-6 col-12">
-              <div class="mb-3">
-                <label class="form-label">Nome:</label>
-                <div class="input-group">
-                  <span class="input-group-text" id="basic-addon3"><i class="bi bi-person"></i></span>
-                  <input type="text" class="form-control"
-                    @keyup.enter="salvar" 
-                    v-model="cliente.nome"
-                    placeholder="Nome - Sobrenome"
-                  >
-                </div>
-              </div>
-              <div class="mb-3">
-                <label class="form-label">CPF:</label>
-                <div class="input-group">
-                  <span class="input-group-text" id="basic-addon3"><i class="bi bi-person-vcard"></i></span>
-                  <input type="text" class="form-control"
-                    @keyup.enter="salvar" 
-                    v-model="cliente.cpf"
-                    placeholder="99999999999"
-                  >
-                </div>
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Email:</label>
-                <div class="input-group">
-                  <span class="input-group-text" id="basic-addon3"><i class="bi bi-envelope"></i></span>
-                  <input type="text" class="form-control"
-                    @keyup.enter="salvar" 
-                    v-model="cliente.email"
-                    placeholder="nome@gmail.com"
-                  >
-                </div>
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Telefone:</label>
-                <div class="input-group">
-                  <span class="input-group-text" id="basic-addon3"><i class="bi bi-telephone"></i></span>
-                  <input type="text" class="form-control"
-                    @keyup.enter="salvar" 
-                    v-model="cliente.telefone"
-                    placeholder="(99) 99999-9999"
-                  >
-                </div>
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Endereço:</label>
-                <div class="input-group">
-                  <span class="input-group-text" id="basic-addon3"><i class="bi bi-geo-alt"></i></span>
-                  <input type="text" class="form-control"
-                    @keyup.enter="salvar" 
-                    v-model="cliente.endereco"
-                    placeholder="Núm.Casa, Rua, Bairro, Cidade"
-                  >
-                </div>
-              </div>
+        <div class="mb-3">
+          <label class="form-label">Nome:</label>
+          <div class="input-group">
+            <span class="input-group-text" id="basic-addon3"><i class="bi bi-person"></i></span>
+            <input type="text" class="form-control"
+              @keyup.enter="salvar" 
+              v-model="cliente.nome"
+              placeholder="Nome - Sobrenome"
+            >
           </div>
-          <div class="col-md-3 col-12"></div>
-          <button class="btn btn-success" @click="salvar">Salvar</button>
         </div>
+        <div class="mb-3">
+          <label class="form-label">CPF:</label>
+          <div class="input-group">
+            <span class="input-group-text" id="basic-addon3"><i class="bi bi-person-vcard"></i></span>
+            <input type="text" class="form-control"
+              @keyup.enter="salvar" 
+              v-model="cliente.cpf"
+              placeholder="99999999999"
+            >
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email:</label>
+          <div class="input-group">
+            <span class="input-group-text" id="basic-addon3"><i class="bi bi-envelope"></i></span>
+            <input type="text" class="form-control"
+              @keyup.enter="salvar" 
+              v-model="cliente.email"
+              placeholder="nome@gmail.com"
+            >
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Telefone:</label>
+          <div class="input-group">
+            <span class="input-group-text" id="basic-addon3"><i class="bi bi-telephone"></i></span>
+            <input type="text" class="form-control"
+              @keyup.enter="salvar" 
+              v-model="cliente.telefone"
+              placeholder="(99) 99999-9999"
+            >
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Endereço:</label>
+          <div class="input-group">
+            <span class="input-group-text" id="basic-addon3"><i class="bi bi-geo-alt"></i></span>
+            <input type="text" class="form-control"
+              @keyup.enter="salvar" 
+              v-model="cliente.endereco"
+              placeholder="Núm.Casa, Rua, Bairro, Cidade"
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-12"></div>
+      <button class="btn btn-success" @click="salvar">Salvar</button>
     </div>
-    <div class="col-12">
+    <div class="col-12" id="clientes">
       <div class="row g-0">
         <div class="col-md-12">
           <div class="card-body">
+            <div class="input-group mb-3">
+              <select class="input-group-text" v-model="selectedFilter">
+                <option value="nome">Nome</option>
+                <option value="cpf">CPF</option>
+                <option value="email">Email</option>
+                <option value="telefone">Telefone</option>
+                <option value="endereco">Endereço</option>
+              </select>
+              <input v-if="selectedFilter" type="text" class="form-control" :placeholder="'Pesquisar ' + selectedFilter" v-model="filters.cliente[selectedFilter]">
+            </div>
             <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col">Cliente</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Telefone</th>
-                            <th scope="col">Endereço</th>
-                            <th scope="col">CPF</th>
-                            <th scope="col" id="action">Ações</th>
-                        </tr>
-                        </thead>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col">Endereço</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col" id="action">Ações</th>
+                  </tr>
+                </thead>
                 <tbody>
-                  <tr v-for="cliente in clientes" :key="cliente.id">
+                  <tr v-for="cliente in filteredClientes" :key="cliente.id">
                     <td>{{ cliente.nome }}</td>
                     <td>{{ cliente.email }}</td>
                     <td>{{ cliente.telefone }}</td>
@@ -179,14 +208,13 @@ export default {
                     </td>
                   </tr>
                 </tbody>
-                    </table>
-
-                </div>
+              </table>
             </div>
+          </div>
         </div>
+      </div>
     </div>
   </div>
-
 </template>
 
 <style scoped>
@@ -238,6 +266,10 @@ button {
   width: 100%;
 }
 
+.btn-success {
+  margin-top: -5%;
+}
+
 @media screen and (max-width: 767px) {
   .container-fluid {
     padding-top: 25%;
@@ -245,6 +277,8 @@ button {
   table {
     width: 800px;
   }
+  #clientes {
+    padding: 3%;
+  }
 }
-
 </style>

@@ -22,7 +22,7 @@ export default class ClientesApi {
 
   async atualizarCliente(cliente) {
     const response = await axios.put(
-      `http://localhost:8000/clientes/${cliente.id}`,
+      `http://localhost:8000/clientes/${cliente.id}/`,
       cliente
     );
     return response.data;

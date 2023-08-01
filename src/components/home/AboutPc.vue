@@ -5,7 +5,7 @@
         <div class="container container_item">
             <div class="row">
                 <div class="col-md-6" id="divLeft">
-                    <img class="img-fluid" src="@/assets/img/PC.png">
+                    <img class="img-fluid" src="@/assets/img/Pc.png">
                 </div>
                 <div class="col-md-6 row">
                     <div>

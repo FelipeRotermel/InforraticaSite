@@ -96,7 +96,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  padding-top: 5%;
+  padding-top: 10%;
 }
 
 .col-md-5 {

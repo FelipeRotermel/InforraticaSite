@@ -1,11 +1,78 @@
 <script>
+import ClientesApi from '@/api/clientes.js'
 import NavBar from '@/components/nav/NavBarOrdem.vue'
+import ComputadoresApi from '@/api/computadores.js'
+import OrdemServicoApi from '@/api/ordemServico.js'
+
+const clientesApi = new ClientesApi();
+const computadoresApi = new ComputadoresApi();
 
 export default {
     components: {
         NavBar
     },
-}
+    data() {
+    return {
+      clientes: [],
+      cliente: {},
+      computadores: [],
+      computador: {},
+      selectedFilter: 'nome',
+      filters: {
+        cliente: {
+          nome: '',
+          cpf: '',
+          email: '',
+          telefone: '',
+          endereco: '',
+          placa_mae: '',
+          processador: '',
+          memoria_ram: '',
+          placa_de_video: '',
+          ssd: '',
+          hd: '',
+          cooler: '',
+          fonte: '',
+          gabinete: '',
+          imagem: ''
+        }
+      },
+      filterOptions: ['nome', 'cpf', 'email', 'telefone', 'endereco', 'placa_mae', 'processador', 'memoria_ram', 'placa_de_video', 'ssd', 'hd', 'cooler', 'fonte', 'gabinete']
+    };
+  },
+  computed: {
+    filteredComputadores() {
+      if (this.selectedFilter !== '') {
+        return this.computadores.filter(computador =>
+          computador[this.selectedFilter].includes(this.filters.computador[this.selectedFilter])
+        );
+      } else {
+        return this.computadores;
+      }
+    }
+  },
+  async created() {
+    this.computadores = await computadoresApi.buscarTodosOsComputadores();
+  },
+  methods: {
+    async salvar() {
+      if (this.computador.id) {
+        await computadoresApi.atualizarComputador(this.computador);
+      } else {
+        await computadoresApi.adicionarComputador(this.computador);
+      }
+      this.computadores = await computadoresApi.buscarTodosOsComputadores();
+      this.computador = {};
+    },
+    async excluir(computador) {
+      await computadoresApi.excluirComputador(computador.id);
+      this.computadores = await computadoresApi.buscarTodosOsComputadores();
+    },
+    editar(computador) {
+      Object.assign(this.computador, computador);
+    },
+  },
+};  
 </script>
 
 <template>
@@ -17,7 +84,7 @@ export default {
                     <div class="mb-3">
                         <label class="form-label">Cliente:</label>
                         <div class="input-group">
-                            <select class="input-group-text">
+                            <select class="input-group-text" v-model="selectedFilter">
                                 <option value="1">Cliente 1</option>
                                 <option value="2">Cliente 2</option>
                                 <option value="3">Cliente 3</option>
@@ -29,11 +96,12 @@ export default {
                     <div class="md-3">
                         <label class="form-label">Computador:</label>
                         <div class="input-group">
-                            <select class="input-group-text">
+                            <select class="input-group-text" v-model="selectedFilter">
                                 <option value="1">Computador 1</option>
                                 <option value="2">Computador 2</option>
                                 <option value="3">Computador 3</option>
                             </select>
+                            <input v-if="selectedFilter" type="text" class="form-control" :placeholder="'Pesquisar ' + selectedFilter" v-model="filters.computador[selectedFilter]">
                         </div>
                     </div>
                 </div>

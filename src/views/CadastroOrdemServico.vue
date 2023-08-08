@@ -2,8 +2,9 @@
 import ClientesApi from '@/api/clientes.js'
 import NavBar from '@/components/nav/NavBarOrdem.vue'
 import ComputadoresApi from '@/api/computadores.js'
-import OrdemServicoApi from '@/api/ordemServico.js'
+import OrdemApi from '@/api/ordem.js'
 
+const ordemApi = new OrdemApi();
 const clientesApi = new ClientesApi();
 const computadoresApi = new ComputadoresApi();
 
@@ -14,62 +15,56 @@ export default {
     data() {
     return {
       clientes: [],
-      cliente: {},
       computadores: [],
+      ordemservicos: [],
+      cliente: {},
       computador: {},
-      selectedFilter: 'nome',
+      ordemservico: {},
+      selectedFilter: 'cliente',
       filters: {
-        cliente: {
-          nome: '',
-          cpf: '',
-          email: '',
-          telefone: '',
-          endereco: '',
-          placa_mae: '',
-          processador: '',
-          memoria_ram: '',
-          placa_de_video: '',
-          ssd: '',
-          hd: '',
-          cooler: '',
-          fonte: '',
-          gabinete: '',
-          imagem: ''
+        ordemservico: {
+          cliente: '',
+          computador: '',
+          valor: '',
+          descricao: '',
+          data: ''
         }
       },
-      filterOptions: ['nome', 'cpf', 'email', 'telefone', 'endereco', 'placa_mae', 'processador', 'memoria_ram', 'placa_de_video', 'ssd', 'hd', 'cooler', 'fonte', 'gabinete']
+      filterOptions: ['cliente', 'computador', 'valor', 'descricao', 'data']
     };
   },
   computed: {
-    filteredComputadores() {
+    filteredOrdem() {
       if (this.selectedFilter !== '') {
-        return this.computadores.filter(computador =>
-          computador[this.selectedFilter].includes(this.filters.computador[this.selectedFilter])
+        return this.ordemservicos.filter(ordemservico =>
+          ordemservico[this.selectedFilter].includes(this.filters.ordemservico[this.selectedFilter])
         );
       } else {
-        return this.computadores;
+        return this.ordemservicos;
       }
     }
   },
   async created() {
+    this.ordemservicos = await ordemApi.buscarTodasAsOrdens();
+    this.clientes = await clientesApi.buscarTodosOsClientes();
     this.computadores = await computadoresApi.buscarTodosOsComputadores();
   },
   methods: {
     async salvar() {
-      if (this.computador.id) {
-        await computadoresApi.atualizarComputador(this.computador);
+      if (this.ordemservico.id) {
+        await ordemApi.atualizarOrdem(this.ordemservico);
       } else {
-        await computadoresApi.adicionarComputador(this.computador);
+        await ordemApi.adicionaOrdem(this.ordemservico); // Corrected method name
       }
-      this.computadores = await computadoresApi.buscarTodosOsComputadores();
-      this.computador = {};
+      this.ordemservicos = await ordemApi.buscarTodasAsOrdens();
+      this.ordemservico = {};
     },
-    async excluir(computador) {
-      await computadoresApi.excluirComputador(computador.id);
-      this.computadores = await computadoresApi.buscarTodosOsComputadores();
+    async excluir(ordemservico) {
+      await ordemApi.excluirOrdem(ordemservico.id);
+      this.ordemservico = await ordemApi.buscarTodasAsOrdens();
     },
-    editar(computador) {
-      Object.assign(this.computador, computador);
+    editar(ordemservico) {
+      Object.assign(this.ordemservico, ordemservico);
     },
   },
 };  
@@ -84,10 +79,8 @@ export default {
                     <div class="mb-3">
                         <label class="form-label">Cliente:</label>
                         <div class="input-group">
-                            <select class="input-group-text" v-model="selectedFilter">
-                                <option value="1">Cliente 1</option>
-                                <option value="2">Cliente 2</option>
-                                <option value="3">Cliente 3</option>
+                            <select class="input-group-text" v-model="ordemservico.cliente">
+                                <option v-for="cliente in clientes " :key="cliente.id" :value="cliente.id">{{ cliente.nome}}</option>
                             </select>
                         </div>
                     </div>
@@ -96,12 +89,10 @@ export default {
                     <div class="md-3">
                         <label class="form-label">Computador:</label>
                         <div class="input-group">
-                            <select class="input-group-text" v-model="selectedFilter">
-                                <option value="1">Computador 1</option>
-                                <option value="2">Computador 2</option>
-                                <option value="3">Computador 3</option>
+                            <select class="input-group-text" v-model="ordemservico.computador">
+                                <option v-for="computador in computadores" :key="computador.id" :value="computador.id">{{ computador.gabinete }}</option>
                             </select>
-                            <input v-if="selectedFilter" type="text" class="form-control" :placeholder="'Pesquisar ' + selectedFilter" v-model="filters.computador[selectedFilter]">
+                          
                         </div>
                     </div>
                 </div>
@@ -110,7 +101,9 @@ export default {
                 <div class="col-md-10">
                     <div class="input-group">
                         <span class="input-group-text">Descrição do problema: </span>
-                        <textarea class="form-control" aria-label="With textarea"></textarea>
+                        <textarea v-model="ordemservico.descricao" class="form-control" aria-label="With textarea"></textarea>
+                        <span class="input-group-text">valor: </span>
+                        <textarea v-model="ordemservico.valor" class="form-control" aria-label="With textarea"></textarea>
                     </div>
                 </div>
             </div>
@@ -126,7 +119,6 @@ export default {
                 <option value="cliente">Cliente</option>
                 <option value="computador">Computador</option>
               </select>
-              <input v-if="selectedFilter" type="text" class="form-control" :placeholder="'Pesquisar ' + selectedFilter" v-model="filters.computador[selectedFilter]">
             </div>
             <div class="table-responsive">
               <table class="table">
@@ -134,17 +126,21 @@ export default {
                   <tr>
                     <th scope="col">Cliente</th>
                     <th scope="col">Computador</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Valor</th>
                     <th scope="col" id="action">Ações</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="computador in filteredComputadores" :key="computador.id">
-                    <td>{{ computador.cliente }}</td>
-                    <td>{{ computador.computador }}</td>
+                  <tr v-for="ordemservico in ordemservicos" :key="ordemservico.id">
+                    <td>{{ ordemservico.cliente }}</td>
+                    <td>{{ ordemservico.computador }}</td>
+                    <td>{{ ordemservico.descricao }}</td>
+                    <td>{{ ordemservico.valor }}</td>
                     <td>
-                      <button class="col-1 btn btn-danger" @click="excluir(computador)">Del</button>
+                      <button class="col-1 btn btn-danger" @click="excluir(ordemservico)">Del</button>
                       <div class="w-100" id="separate"></div>
-                      <button class="col-1 btn btn-warning" @click="editar(computador)">Edit</button>
+                      <button class="col-1 btn btn-warning" @click="editar(ordemservico)">Edit</button>
                     </td>
                   </tr>
                 </tbody>

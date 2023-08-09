@@ -20,24 +20,22 @@ export default {
       cliente: {},
       computador: {},
       ordemservico: {},
-      selectedFilter: 'cliente',
+      selectedFilter: 'descricao',
       filters: {
         ordemservico: {
-          cliente: '',
-          computador: '',
           valor: '',
           descricao: '',
           data: ''
         }
       },
-      filterOptions: ['cliente', 'computador', 'valor', 'descricao', 'data']
+      filterOptions: ['descricao', 'valor', 'data']
     };
   },
   computed: {
     filteredOrdem() {
       if (this.selectedFilter !== '') {
         return this.ordemservicos.filter(ordemservico =>
-          ordemservico[this.selectedFilter].includes(this.filters.ordemservico[this.selectedFilter])
+          ordemservico[this.selectedFilter].toString().includes(this.filters.ordemservico[this.selectedFilter]),
         );
       } else {
         return this.ordemservicos;
@@ -54,7 +52,7 @@ export default {
       if (this.ordemservico.id) {
         await ordemApi.atualizarOrdem(this.ordemservico);
       } else {
-        await ordemApi.adicionaOrdem(this.ordemservico); // Corrected method name
+        await ordemApi.adicionaOrdem(this.ordemservico);
       }
       this.ordemservicos = await ordemApi.buscarTodasAsOrdens();
       this.ordemservico = {};
@@ -98,13 +96,17 @@ export default {
                 </div>
             </div>
             <div class="row d-flex align-items-center justify-content-center">
-                <div class="col-md-10">
+                <div class="col-md-8">
                     <div class="input-group">
-                        <span class="input-group-text">Descrição do problema: </span>
+                        <span class="input-group">Descrição do problema: </span>
                         <textarea v-model="ordemservico.descricao" class="form-control" aria-label="With textarea"></textarea>
-                        <span class="input-group-text">valor: </span>
-                        <textarea v-model="ordemservico.valor" class="form-control" aria-label="With textarea"></textarea>
                     </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="input-group">
+                    <span class="input-group">Valor: </span>
+                    <input type="text" v-model="ordemservico.valor" class="form-control" aria-label="Amount (to the nearest dollar)">
+                  </div>
                 </div>
             </div>
             <div class="row justify-content-center">
@@ -115,10 +117,12 @@ export default {
         <div class="col-md-12">
           <div class="card-body">
             <div class="input-group mb-3">
-              <select class="input-group-text" v-model="selectedFilter">
-                <option value="cliente">Cliente</option>
-                <option value="computador">Computador</option>
+              <select class="input-group-text" id="input" v-model="selectedFilter">
+                <option value="valor">Valor</option>
+                <option value="descricao">Descrição</option>
+                <option value="data">Data</option>
               </select>
+              <input v-if="selectedFilter" type="text" class="form-control" :placeholder="'Pesquisar ' + selectedFilter" v-model="filters.ordemservico[selectedFilter]">
             </div>
             <div class="table-responsive">
               <table class="table">
@@ -128,15 +132,17 @@ export default {
                     <th scope="col">Computador</th>
                     <th scope="col">Descrição</th>
                     <th scope="col">Valor</th>
+                    <th scope="col">Data</th>
                     <th scope="col" id="action">Ações</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="ordemservico in ordemservicos" :key="ordemservico.id">
-                    <td>{{ ordemservico.cliente }}</td>
-                    <td>{{ ordemservico.computador }}</td>
+                  <tr v-for="ordemservico in filteredOrdem" :key="ordemservico.id">
+                    <td>{{ ordemservico.cliente?.nome }}</td>
+                    <td>{{ ordemservico.computador?.gabinete }}</td>
                     <td>{{ ordemservico.descricao }}</td>
                     <td>{{ ordemservico.valor }}</td>
+                    <td>{{ ordemservico.data }}</td>
                     <td>
                       <button class="col-1 btn btn-danger" @click="excluir(ordemservico)">Del</button>
                       <div class="w-100" id="separate"></div>
@@ -150,8 +156,8 @@ export default {
         </div>
       </div>
     </div>
-        </div>
-    </div>
+  </div>
+  </div>
 </template>
 
 <style scoped>
@@ -164,16 +170,20 @@ export default {
 }
 
 .col-md-5 {
-    height: 100px;
+  height: 100px;
 }
 
 .input-group-text {
-    width: 100%;
+  width: 100%;
+}
+
+#input {
+  width: 10%;
 }
 
 .btn-success {
-    margin-top: 100px;
-    margin-bottom: 100px;
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
 
 button {
@@ -221,8 +231,8 @@ img {
   }
   .btn-success {
     margin-top: 50px;
-    margin-bottom: 50px;
-}
+    margin-bottom: 50px;  
+  }
 }
 
 </style>

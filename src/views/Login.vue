@@ -1,5 +1,21 @@
 <script setup>
+  import axios from 'axios'
+  import { ref} from 'vue'
+
   import NavBarLogin from '@/components/nav/NavBarLogin.vue'
+
+  const user = ref({
+    email: '',
+    password: ''
+  })
+
+  const login = async () => {
+    const { data } = await axios.post('http://localhost:8000/token/', user.value)
+    if (data) {
+      localStorage.setItem('token', data.access)
+      // router.push('/')
+    }
+  }
 </script>
 
 <template>
@@ -18,16 +34,16 @@
                 </div>
                 <form>
                   <div class="form-outline mb-4">
-                    <input type="email" id="form2Example11" class="form-control" />
+                    <input type="email" id="form2Example11" class="form-control" v-model="user.email" />
                     <label class="form-label" for="form2Example11">Nome ou Email</label>
                   </div>
                   <div class="form-outline mb-4">
-                    <input type="password" id="form2Example22" class="form-control" />
+                    <input type="password" id="form2Example22" class="form-control" v-model="user.password" />
                     <label class="form-label" for="form2Example22">Senha</label>
                   </div>
                   <div class="text-center pt-1 mb-5 pb-1">
-                    <button class="btn btn-primary btn-block fa-lg mb-3" type="button">Login</button>
-                  </div>
+                    <button class="btn btn-primary btn-block fa-lg mb-3" @click="login" type="button">Login</button>
+                  </div>  
                 </form>
               </div>
             </div>

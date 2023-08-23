@@ -23,6 +23,9 @@
                     <li class="nav-item">
                         <a class="nav-link" v-scroll-to="'#FAQ'">Perguntas</a>
                     </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/cadastro-ordem-servico">SUS</router-link>
+                    </li>
                 </ul>
             </div>
             <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">

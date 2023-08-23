@@ -4,6 +4,7 @@ import "bootstrap/dist/js/bootstrap.js";
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import "@/utils/navbar.js";
 import "@/utils/carousel.js";
+// import './plugins/axios'
 import vueScrollto from 'vue-scrollto';
 
 import { createApp } from 'vue'

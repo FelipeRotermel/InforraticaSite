@@ -56,7 +56,7 @@ export default {
           cpf: '',
           email: '',
           telefone: '',
-          endereco: ''
+          endereco: '',
         }
     },
     filterOptions: ['nome', 'cpf', 'email', 'telefone', 'endereco']

@@ -2,6 +2,7 @@
 
 <template>
     <div id="marcas" class="carousel slide" data-bs-ride="carousel">
+        <div class="triangleRight"></div>
         <div class="carousel-inner">
             <h1 class="fs-1 text-center">Trabalhamos com:</h1>
             <div class="carousel-item active">
@@ -43,6 +44,7 @@
                 </div>
             </div>
         </div>
+        <div class="triangleLeft"></div>
         <button class="carousel-control-prev" type="button" data-bs-target="#marcas" data-bs-slide="prev">
             <i class="bi bi-arrow-left-circle"></i>
         </button>
@@ -55,11 +57,11 @@
 <style scoped>
 
 .carousel {
-    box-shadow: inset 0 0 35px 5px rgba(0,0,0,0.25), inset 0 2px 1px 1px rgba(255,255,255,0.9);
+    background-color: rgb(216, 216, 216);
 }
 .cards-wrapper {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .card {
@@ -69,22 +71,45 @@
     padding-left: 2%;
 }
 .card img {
-  max-width: 100px;
-  max-height: 100px;
+    max-width: 100px;
+    max-height: 100px;
 }
 
 .card {
-  margin: 0 0.5em;
-  border: none;
-  border-radius: 0;
-  background-color: transparent;
+    margin: 0 0.5em;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
 }
 .carousel-inner {
-  padding: 1em;
+    padding: 1em;
+}
+
+.triangleRight {
+    border-right: 98.8vw solid transparent;
+    border-top: 120px solid white;
+}
+
+.triangleLeft {
+    border-right: 98.8vw solid transparent;
+    border-bottom: 120px solid white;
 }
 
 i {
     font-size: 2rem;
     color: black;
 }
+
+@media screen and (max-width: 767px) {
+    .triangleLeft {
+        border-bottom: 40px solid white;
+    }
+    .triangleRight {
+        border-top: 40px solid white;
+    }
+    img {
+        width: 60px;
+    }
+}
+
 </style>

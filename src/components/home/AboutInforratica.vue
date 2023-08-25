@@ -77,12 +77,12 @@ hr {
 }
 
 @media screen and (max-width: 767px) {
-  img {
-    width: 31%;
-  }
-  .about-title {
-    text-align: center;
-    margin-top: 50px;
+    img {
+        width: 31%;
+    }
+    .about-title {
+        text-align: center;
+        margin-top: 50px;
     }
 }
 

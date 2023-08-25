@@ -2,6 +2,7 @@
 
 <template>
     <div class="container-fluid" id="aboutInforratica">
+        <div class="triangleLeft"></div>
         <div class="container container_item">
             <div class="row">
                 <div class="col-md-6" id="divLeft">
@@ -17,6 +18,7 @@
                 </div>
             </div>
         </div>
+        <div class="triangleRight"></div>
     </div>
 </template>
 
@@ -24,7 +26,6 @@
 
 .container-fluid {
     position: relative;
-    padding-top: 50px;
     background-color: #dadada;
 }
 
@@ -43,6 +44,16 @@
 img {
     width: 100%;
     height: 100%;
+}
+
+.triangleLeft {
+    border-Left: 98.8vw solid transparent;
+    border-top: 120px solid white;
+}
+
+.triangleRight {
+    border-right: 98.8vw solid transparent;
+    border-bottom: 120px solid white;
 }
 
 </style>

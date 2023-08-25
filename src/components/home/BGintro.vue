@@ -14,6 +14,7 @@
                 </div>
             </div>
         </div>
+        <div class="triangle"></div>
     </div>
 </template>
 
@@ -23,11 +24,10 @@
     background-color: rgb(232, 232, 232);
     padding: 0;
     margin: 0;
-    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    background-image: url("@/assets/img/bgintro.png");
 }
 
 .carousel {
-    background-image: url("@/assets/img/bgintro.png");
     min-height: 500px;
     background-attachment: fixed;
     background-position: center;
@@ -42,6 +42,11 @@
 
 .carousel-caption {
     margin-bottom: 15vh;
+}
+
+.triangle {
+  border-right: 98.8vw solid transparent;
+  border-bottom: 120px solid white;
 }
 
 .text {

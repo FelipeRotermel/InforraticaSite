@@ -25,6 +25,7 @@
 .container-fluid {
     position: relative;
     padding-top: 50px;
+    background-color: #dadada;
 }
 
 .col-md-6 {

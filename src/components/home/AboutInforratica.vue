@@ -8,10 +8,12 @@
                     <h3 class="main-title display-6 fw-bold">Sobre a Inforratica:</h3>
                     <hr class="opacity-100">
                 </div>
-                <div class="col-md-6">
-                    <img class="img-fluid" src="https://images.unsplash.com/photo-1624705002806-5d72df19c3ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29tcHV0ZXIlMjBzdG9yZXxlbnwwfHwwfHw%3D&w=1000&q=80">
+                <div class="col-md-7">
+                    <img src="@/assets/img/InfoPcLeft.jpg" alt="">
+                    <img src="@/assets/img/InfoPcCenter.jpg" alt="">
+                    <img src="@/assets/img/InfoPcRight.jpg" alt="">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <h3 class="about-title">A mais confiável</h3>
                     <p class="fs-5 text">
                         Inforratica é uma loja especializada em reparo de computadores e notebooks. Começamos nossa operação em 2023, com o objetivo de fornecer os melhores produtos e serviços de informática para nossos clientes.
@@ -42,10 +44,21 @@
 }
 
 img {
-    border-radius: 5px;
-    width: 100%;
-    height: 100%;
-    filter: brightness(0.8);
+    min-height: 450px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 31%;
+    object-fit: cover;
+    margin-left: 1.5px;
+    margin-right: 1.5px;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    transition: all 0.3s ease 0s;
+}
+
+img:hover {
+    transform: scale(1.05);
 }
 
 ul {
@@ -61,6 +74,16 @@ hr {
     width: 35%;
     position: absolute;
     left: 33%;
+}
+
+@media screen and (max-width: 767px) {
+  img {
+    width: 31%;
+  }
+  .about-title {
+    text-align: center;
+    margin-top: 50px;
+    }
 }
 
 </style>

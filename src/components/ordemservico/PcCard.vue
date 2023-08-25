@@ -64,12 +64,6 @@ table {
   border: 1px solid #ddd;
 }
 
-@media screen and (max-width: 767px) {
-  table {
-    width: 800px;
-  }
-}
-
 th {
   background-color: #b6b6b6;
   color: white;
@@ -81,6 +75,12 @@ td {
 
 .text-end {
   color: red;
+}
+
+@media screen and (max-width: 767px) {
+  table {
+    width: 800px;
+  }
 }
 
 </style>

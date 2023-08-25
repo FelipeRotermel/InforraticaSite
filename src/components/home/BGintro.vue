@@ -3,8 +3,7 @@
 <template>
     <div class="container-fluid">
         <div class="carousel slide w-100">
-            <div class="carousel-inner">
-            </div>
+            <div class="carousel-inner"></div>
             <div class="carousel-caption d-flex align-items-center justify-content-center text-center">
                 <div class="text">
                     <h1><strong>Manutenção e reparo de computadores e notebooks</strong></h1>

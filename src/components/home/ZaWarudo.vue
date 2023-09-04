@@ -47,11 +47,12 @@ export default {
 
 <style scoped>
 .container {
-    left: 47%;
+    left: 50%;
     position: absolute;
     transform: translateX(-50%);
     width: 100px;
     height: 200px;
+    overflow-x: visible;
 }
 
 button {

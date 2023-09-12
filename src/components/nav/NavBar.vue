@@ -24,7 +24,13 @@
                         <a class="nav-link" v-scroll-to="'#FAQ'">Perguntas</a>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/cadastro-ordem-servico">SUS</router-link>
+                        <router-link class="nav-link" to="/cadastro-ordem-servico">Cadastro O.S.</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/cadastro-computador">Cadastro PC</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" to="/cadastro-cliente">Cadastro Cliente</router-link>
                     </li>
                 </ul>
             </div>

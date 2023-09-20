@@ -1,6 +1,8 @@
 <script>
 import ComputadoresApi from '@/api/computadores.js'
+import imageService from '@/api/images.js'
 import NavBar from '@/components/nav/NavBarOrdem.vue'
+import { reactive } from 'vue'
 const computadoresApi = new ComputadoresApi();
 export default {
   components: {
@@ -10,39 +12,49 @@ export default {
     return {
       computadores: [],
       computador: {},
-      selectedFilter: 'placa_mae',
-      filters: {
-        computador: {
-          placa_mae: '',
-          processador: '',
-          memoria_ram: '',
-          placa_de_video: '',
-          ssd: '',
-          hd: '',
-          cooler: '',
-          fonte: '',
-          gabinete: '',
-          imagem: ''
-        }
-      },
-      filterOptions: ['placa_mae', 'processador', 'memoria_ram', 'placa_de_video', 'ssd', 'hd', 'cooler', 'fonte', 'gabinete']
+      coverUrl: '',
+      file: null,
+      currentComputador: reactive({
+        placa_de_video: "",
+        placa_mae: "",
+        processador: "",
+        memoria_ram: "",
+        ssd: "",
+        hd: "",
+        cooler: "",
+        fonte: "",
+        gabinete: "",
+      }),
     };
   },
-  computed: {
-    filteredComputadores() {
-      if (this.selectedFilter !== '') {
-        return this.computadores.filter(computador =>
-          computador[this.selectedFilter].includes(this.filters.computador[this.selectedFilter])
-        );
-      } else {
-        return this.computadores;
-      }
-    }
-  },
+
   async created() {
     this.computadores = await computadoresApi.buscarTodosOsComputadores();
   },
   methods: {
+    onFileChange(e) {
+      this.file = e.target.files[0];
+      if (this.file) {
+        this.coverUrl = URL.createObjectURL(this.file);
+      }
+    },
+    async save() {
+      const image = await imageService.uploadImage(this.file);
+      this.currentComputador.cover_attachment_key = image.attachment_key;
+      await computadoresApi.adicionarComputador(this.currentComputador);
+      Object.assign(this.currentComputador, {
+        placa_de_video: "",
+        placa_mae: "",
+        processador: "",
+        memoria_ram: "",
+        ssd: "",
+        hd: "",
+        cooler: "",
+        fonte: "",
+        gabinete: "",
+        cover_attachment_key: ''
+      });
+    },
     async salvar() {
       if (this.computador.id) {
         await computadoresApi.atualizarComputador(this.computador);
@@ -172,11 +184,7 @@ export default {
           <label class="form-label">Imagem:</label>
           <div class="input-group">
             <span class="input-group-text" id="basic-addon3"><i class="bi bi-card-image"></i></span>
-            <input type="text" class="form-control" 
-              @keyup.enter="salvar" 
-              v-model="computador.imagem" 
-              placeholder="URL"
-            >
+            <input type="file" @change="onFileChange" style="display: block;" />
           </div>
         </div>
       </div>
@@ -186,20 +194,6 @@ export default {
       <div class="row g-0">
         <div class="col-md-12">
           <div class="card-body">
-            <div class="input-group mb-3">
-              <select class="input-group-text" v-model="selectedFilter">
-                <option value="placa_mae">Placa-Mãe</option>
-                <option value="processador">Processador</option>
-                <option value="memoria_ram">Memória</option>
-                <option value="placa_de_video">Placa de Vídeo</option>
-                <option value="ssd">SSD</option>
-                <option value="hd">HD</option>
-                <option value="cooler">Cooler</option>
-                <option value="fonte">Fonte</option>
-                <option value="gabinete">Gabinete</option>
-              </select>
-              <input v-if="selectedFilter" type="text" class="form-control" :placeholder="'Pesquisar ' + selectedFilter" v-model="filters.computador[selectedFilter]">
-            </div>
             <div class="table-responsive">
               <table class="table">
                 <thead>
@@ -218,7 +212,7 @@ export default {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="computador in filteredComputadores" :key="computador.id">
+                  <tr v-for="computador in computadores" :key="computador.id">
                     <td>{{ computador.placa_mae }}</td>
                     <td>{{ computador.processador }}</td>
                     <td>{{ computador.memoria_ram }}</td>
@@ -228,7 +222,7 @@ export default {
                     <td>{{ computador.cooler }}</td>
                     <td>{{ computador.fonte }}</td>
                     <td>{{ computador.gabinete }}</td>
-                    <td><img :src="computador.imagem" alt=""></td>
+                    <td><img :src="computador.cover ? computador.cover.url : ''" alt=""></td>
                     <td>
                       <button class="col-1 btn btn-danger" @click="excluir(computador)">Del</button>
                       <div class="w-100" id="separate"></div>

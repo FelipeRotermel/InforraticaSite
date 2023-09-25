@@ -14,6 +14,7 @@ export default {
       computador: {},
       coverUrl: '',
       file: null,
+      files: null,
       currentComputador: reactive({
         placa_de_video: "",
         placa_mae: "",
@@ -33,14 +34,12 @@ export default {
   },
   methods: {
     onFileChange(e) {
-      this.file = e.target.files[0];
-      if (this.file) {
-        this.coverUrl = URL.createObjectURL(this.file);
-      }
+      this.file = e.target.files[0]
+      this.coverUrl = URL.createObjectURL(this.file)
     },
     async save() {
       const image = await imageService.uploadImage(this.file);
-      this.currentComputador.cover_attachment_key = image.attachment_key;
+      this.currentComputador.capa_attachment_key = image.attachment_key;
       await computadoresApi.adicionarComputador(this.currentComputador);
       Object.assign(this.currentComputador, {
         placa_de_video: "",
@@ -52,8 +51,10 @@ export default {
         cooler: "",
         fonte: "",
         gabinete: "",
-        cover_attachment_key: ''
-      });
+        capa_attachment_key: ""
+      })
+      this.currentComputador = {}
+      this.coverURL = ''
     },
     async salvar() {
       if (this.computador.id) {
@@ -222,7 +223,7 @@ export default {
                     <td>{{ computador.cooler }}</td>
                     <td>{{ computador.fonte }}</td>
                     <td>{{ computador.gabinete }}</td>
-                    <td><img :src="computador.cover ? computador.cover.url : ''" alt=""></td>
+                    <td><img :src="computador.capa ? computador.capa.url : ''" alt=""></td>
                     <td>
                       <button class="col-1 btn btn-danger" @click="excluir(computador)">Del</button>
                       <div class="w-100" id="separate"></div>

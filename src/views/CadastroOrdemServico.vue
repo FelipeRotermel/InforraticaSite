@@ -99,7 +99,7 @@ export default {
                 <div class="col-md-8">
                     <div class="input-group">
                         <span class="input-group">Descrição do problema: </span>
-                        <textarea v-model="ordemservico.descricao" class="form-control" aria-label="With textarea"></textarea>
+                        <input v-model="ordemservico.descricao" class="form-control" aria-label="With input" />
                     </div>
                 </div>
                 <div class="col-md-2">

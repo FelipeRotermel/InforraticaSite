@@ -13,7 +13,7 @@ export default {
       computadores: [],
       computador: {},
       coverUrl: '',
-      file: ref(null),
+      file: null,
       currentComputador: reactive({
         placa_de_video: "",
         placa_mae: "",
@@ -50,7 +50,7 @@ export default {
         cooler: "",
         fonte: "",
         gabinete: "",
-        capa_attachment_key: ""
+        capa_attachment_key: "",
       })
       this.computadores = await computadoresApi.buscarTodosOsComputadores();
       this.computador = {};
@@ -77,7 +77,7 @@ export default {
             <span class="input-group-text" id="basic-addon3"><i class="bi bi-motherboard"></i></span>
             <input type="text" class="form-control" 
               @keyup.enter="salvar" 
-              v-model="computador.placa_mae"
+              v-model="currentComputador.placa_mae"
               placeholder="Marca - modelo"
             >
           </div>
@@ -88,7 +88,7 @@ export default {
             <span class="input-group-text" id="basic-addon3"><i class="bi bi-cpu"></i></span>
             <input type="text" class="form-control" 
               @keyup.enter="salvar" 
-              v-model="computador.processador"      
+              v-model="currentComputador.processador"      
               placeholder="Marca - modelo"
             >
           </div>
@@ -99,7 +99,7 @@ export default {
             <span class="input-group-text" id="basic-addon3"><i class="bi bi-memory"></i></span>
             <input type="text" class="form-control" 
               @keyup.enter="salvar" 
-              v-model="computador.memoria_ram"
+              v-model="currentComputador.memoria_ram"
               placeholder="Marca - modelo"
             >
           </div>
@@ -110,7 +110,7 @@ export default {
             <span class="input-group-text" id="basic-addon3"><i class="bi bi-device-hdd"></i></span>
             <input type="text" class="form-control" 
               @keyup.enter="salvar" 
-              v-model="computador.ssd"
+              v-model="currentComputador.ssd"
               placeholder="Marca - modelo"
             >
           </div>
@@ -121,7 +121,7 @@ export default {
             <span class="input-group-text" id="basic-addon3"><i class="bi bi-device-hdd"></i></span>
             <input type="text" class="form-control" 
               @keyup.enter="salvar" 
-              v-model="computador.hd"
+              v-model="currentComputador.hd"
               placeholder="Marca - modelo"
             >
           </div>
@@ -134,7 +134,7 @@ export default {
             <span class="input-group-text" id="basic-addon3"><i class="bi bi-fan"></i></span>
             <input type="text" class="form-control" 
               @keyup.enter="salvar" 
-              v-model="computador.cooler"
+              v-model="currentComputador.cooler"
               placeholder="Marca - modelo"
             >
           </div>
@@ -145,7 +145,7 @@ export default {
             <span class="input-group-text" id="basic-addon3"><i class="bi bi-cpu"></i></span>
             <input type="text" class="form-control" 
               @keyup.enter="salvar" 
-              v-model="computador.placa_de_video"
+              v-model="currentComputador.placa_de_video"
               placeholder="Marca - modelo"
             >
           </div>
@@ -156,7 +156,7 @@ export default {
             <span class="input-group-text" id="basic-addon3"><i class="bi bi-outlet"></i></span>
             <input type="text" class="form-control" 
               @keyup.enter="salvar" 
-              v-model="computador.fonte"
+              v-model="currentComputador.fonte"
               placeholder="Marca - modelo"
             >
           </div>
@@ -167,7 +167,7 @@ export default {
             <span class="input-group-text" id="basic-addon3"><i class="bi bi-pc"></i></span>
             <input type="text" class="form-control" 
               @keyup.enter="salvar" 
-              v-model="computador.gabinete"
+              v-model="currentComputador.gabinete"
               placeholder="Marca - modelo"
             >
           </div>
@@ -176,7 +176,7 @@ export default {
           <label class="form-label">Imagem:</label>
           <div class="input-group">
             <span class="input-group-text" id="basic-addon3"><i class="bi bi-card-image"></i></span>
-            <input type="file" @change="onFileChange" style="display: block;" />
+            <input class="form-control" type="file" @change="onFileChange" style="display: block;" />
           </div>
         </div>
       </div>

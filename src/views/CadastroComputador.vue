@@ -1,8 +1,8 @@
 <script>
 import ComputadoresApi from '@/api/computadores.js'
-import imageService from '@/api/images.js'
+import ImageService from '@/api/images.js'
 import NavBar from '@/components/nav/NavBarOrdem.vue'
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 const computadoresApi = new ComputadoresApi();
 export default {
   components: {
@@ -13,8 +13,7 @@ export default {
       computadores: [],
       computador: {},
       coverUrl: '',
-      file: null,
-      files: null,
+      file: ref(null),
       currentComputador: reactive({
         placa_de_video: "",
         placa_mae: "",
@@ -37,8 +36,8 @@ export default {
       this.file = e.target.files[0]
       this.coverUrl = URL.createObjectURL(this.file)
     },
-    async save() {
-      const image = await imageService.uploadImage(this.file);
+    async salvar() {
+      const image = await ImageService.uploadImage(this.file)
       this.currentComputador.capa_attachment_key = image.attachment_key;
       await computadoresApi.adicionarComputador(this.currentComputador);
       Object.assign(this.currentComputador, {
@@ -53,17 +52,9 @@ export default {
         gabinete: "",
         capa_attachment_key: ""
       })
-      this.currentComputador = {}
-      this.coverURL = ''
-    },
-    async salvar() {
-      if (this.computador.id) {
-        await computadoresApi.atualizarComputador(this.computador);
-      } else {
-        await computadoresApi.adicionarComputador(this.computador);
-      }
       this.computadores = await computadoresApi.buscarTodosOsComputadores();
       this.computador = {};
+      this.coverUrl = '';
     },
     async excluir(computador) {
       await computadoresApi.excluirComputador(computador.id);

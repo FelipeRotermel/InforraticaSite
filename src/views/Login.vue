@@ -2,7 +2,7 @@
   import axios from 'axios'
   import { ref} from 'vue'
 
-  import NavBarLogin from '@/components/nav/NavBarLogin.vue'
+  import NavBar from '@/components/nav/NavBarAlt.vue'
 
   const user = ref({
     email: '',
@@ -10,16 +10,15 @@
   })
 
   const login = async () => {
-    const { data } = await axios.post('http://localhost:8000/token/', user.value)
+    const { data } = await axios.post('http://191.52.55.47:19003/token/', user.value)
     if (data) {
       localStorage.setItem('token', data.access)
-      // router.push('/')
     }
   }
 </script>
 
 <template>
-  <NavBarLogin />
+  <NavBar />
   <div class="background-image"></div>
   <div class="container-fluid">
     <div class="row d-flex justify-content-center align-items-center" id="main">

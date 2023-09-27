@@ -1,7 +1,7 @@
 <script>
 import ComputadoresApi from '@/api/computadores.js'
 import ImageService from '@/api/images.js'
-import NavBar from '@/components/nav/NavBarOrdem.vue'
+import NavBar from '@/components/nav/NavBarAlt.vue'
 import { reactive, ref } from 'vue'
 const computadoresApi = new ComputadoresApi();
 export default {

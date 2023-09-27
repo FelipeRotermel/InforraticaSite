@@ -30,6 +30,9 @@
                         <router-link class="nav-link" to="/cadastro-computador">Cadastro PC</router-link>
                     </li>
                     <li class="nav-item">
+                        <router-link class="nav-link" to="/cadastro-notebook">Cadastro Note</router-link>
+                    </li>
+                    <li class="nav-item">
                         <router-link class="nav-link" to="/cadastro-cliente">Cadastro Cliente</router-link>
                     </li>
                 </ul>

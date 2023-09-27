@@ -1,6 +1,6 @@
 <script>
 import ClientesApi from '@/api/clientes'
-import NavBar from '@/components/nav/NavBarOrdem.vue'
+import NavBar from '@/components/nav/NavBarAlt.vue'
 
 const clientesApi = new ClientesApi();
 

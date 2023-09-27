@@ -1,5 +1,4 @@
 import api from '../plugins/api'
-import axios from 'axios'
 
 class ImageService {
   async uploadImage(file) {

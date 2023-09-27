@@ -1,10 +1,10 @@
 <script setup>
-  import NavBarOrdem from '@/components/nav/NavBarOrdem.vue'
+  import NavBar from '@/components/nav/NavBarAlt.vue'
   import PcCard from '@/components/ordemservico/PcCard.vue'
 </script>
 
 <template>
-  <NavBarOrdem />
+  <NavBar />
   <div class="background-image"></div>
   <div class="container-fluid">
     <PcCard />

@@ -1,6 +1,6 @@
 <script>
 import ClientesApi from '@/api/clientes.js'
-import NavBar from '@/components/nav/NavBarOrdem.vue'
+import NavBar from '@/components/nav/NavBarAlt.vue'
 import ComputadoresApi from '@/api/computadores.js'
 import OrdemApi from '@/api/ordem.js'
 

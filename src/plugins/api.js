@@ -1,9 +1,10 @@
 import axios from 'axios'
+import set_my_ip from '../scripts/set_my_ip'
 
 // axios.defaults.baseURL = 'http://localhost:8080/api'
 
 const api = axios.create({
-    baseURL: 'http://191.52.55.47:19003/',
+    baseURL: 'http://191.52.55.36:19003/',
     headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'

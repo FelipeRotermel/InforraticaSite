@@ -1,6 +1,7 @@
 <script setup>
   import axios from 'axios'
   import { ref} from 'vue'
+  const MY_IP = import.meta.env.VITE_MY_IP
 
   import NavBar from '@/components/nav/NavBarAlt.vue'
 
@@ -10,7 +11,7 @@
   })
 
   const login = async () => {
-    const { data } = await axios.post('http://191.52.55.47:19003/token/', user.value)
+    const { data } = await axios.post('http://191.52.55.36:19003/token/', user.value)
     if (data) {
       localStorage.setItem('token', data.access)
     }

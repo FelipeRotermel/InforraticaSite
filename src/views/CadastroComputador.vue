@@ -60,9 +60,6 @@ export default {
       await computadoresApi.excluirComputador(computador.id);
       this.computadores = await computadoresApi.buscarTodosOsComputadores();
     },
-    editar(computador) {
-      Object.assign(this.computador, computador);
-    },
   },
 };
 </script>
@@ -199,7 +196,7 @@ export default {
                     <th scope="col">Cooler</th>
                     <th scope="col">Fonte</th>
                     <th scope="col">Gabinete</th>
-                    <th scope="col">Imagem</th>
+                    <th scope="col" id="action">Imagem</th>
                     <th scope="col" id="action">Ações</th>
                   </tr>
                 </thead>
@@ -214,11 +211,9 @@ export default {
                     <td>{{ computador.cooler }}</td>
                     <td>{{ computador.fonte }}</td>
                     <td>{{ computador.gabinete }}</td>
-                    <td><img :src="computador.capa ? computador.capa.url : ''" alt=""></td>
+                    <td id="action"><img :src="computador.capa ? computador.capa.url : ''" alt=""></td>
                     <td>
                       <button class="col-1 btn btn-danger" @click="excluir(computador)">Del</button>
-                      <div class="w-100" id="separate"></div>
-                      <button class="col-1 btn btn-warning" @click="editar(computador)">Edit</button>
                     </td>
                   </tr>
                 </tbody>
@@ -270,8 +265,13 @@ td {
   border: 1px solid #ddd;
 }
 
+.image {
+  width: 5%;
+}
+
 img {
-  width: 100px;
+  object-fit: contain;
+  width: 150px;
 }
 
 #action {
@@ -280,10 +280,7 @@ img {
 
 .col-1 {
   width: 100%;
-}
-
-#separate {
-  height: 20px;
+  margin-top: 50%;
 }
 
 @media screen and (max-width: 767px) {

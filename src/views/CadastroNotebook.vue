@@ -101,7 +101,7 @@ export default {
                   <tr>
                     <th scope="col">Marca</th>
                     <th scope="col">Modelo</th>
-                    <th scope="col">Imagem</th>
+                    <th scope="col" id="action">Imagem</th>
                     <th scope="col" id="action">Ações</th>
                   </tr>
                 </thead>
@@ -112,8 +112,6 @@ export default {
                     <td><img :src="notebook.capa ? notebook.capa.url : ''" alt=""></td>
                     <td>
                       <button class="col-1 btn btn-danger" @click="excluir(notebook)">Del</button>
-                      <div class="w-100" id="separate"></div>
-                      <button class="col-1 btn btn-warning" @click="editar(notebook)">Edit</button>
                     </td>
                   </tr>
                 </tbody>
@@ -166,7 +164,7 @@ td {
 }
 
 img {
-  width: 100px;
+  width: 150px;
 }
 
 #action {

@@ -1,14 +1,13 @@
 import axios from 'axios'
-import set_my_ip from '../scripts/set_my_ip'
 
 // axios.defaults.baseURL = 'http://localhost:8080/api'
 
+const MY_IP = import.meta.env.VITE_MY_IP
+console.log(`${MY_IP}`)
+
 const api = axios.create({
-    baseURL: 'http://191.52.55.36:19003/',
-    headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-    }
+  baseURL: `http://${MY_IP}:19003/`,
+  // baseURL: 'http://192.168.0.17:19003/api/',
 })
 
 api.interceptors.request.use(

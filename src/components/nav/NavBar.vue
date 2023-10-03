@@ -1,4 +1,21 @@
-<script></script>
+<script>
+
+localStorage.setItem('token', 'seu_token_de_autenticacao');
+
+// Recuperar um valor do localStorage
+const token = localStorage.getItem('token');
+
+// Remover um valor do localStorage
+localStorage.removeItem('token');
+export default {
+  computed: {
+    // Use a computed property to check if the token is present
+    isLoggedIn() {
+      return localStorage.getItem('token') !== null;
+    },
+  },
+};
+</script>
 
 <template>
     <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
@@ -47,7 +64,7 @@
                         <hr class="d-lg-none my-2 text-white-50">
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"><router-link to="/login">Login</router-link></a>
+                        <a class="nav-link" href="/login">{{ isLoggedIn ? 'Logado' : 'Login' }}</a>
                     </li>
                 </ul>
             </div>

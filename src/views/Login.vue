@@ -1,21 +1,32 @@
 <script setup>
   import axios from 'axios'
-  import { ref} from 'vue'
-  const MY_IP = import.meta.env.VITE_MY_IP
-
+  import { ref, computed} from 'vue'
+  import { useRouter } from 'vue-router'; // Import the router
   import NavBar from '@/components/nav/NavBarAlt.vue'
 
+  const MY_IP = import.meta.env.VITE_MY_IP
+  const router = useRouter(); // Create a router instance
+  const loginError = ref(''); // Initialize as an empty string
   const user = ref({
     email: '',
     password: ''
   })
 
   const login = async () => {
-    const { data } = await axios.post('http://191.52.55.36:19003/token/', user.value)
-    if (data) {
-      localStorage.setItem('token', data.access)
+    try {
+      const { data } = await axios.post(`http://${MY_IP}:19003/token/`, user.value);
+      if (data) {
+        localStorage.setItem('token', data.access);
+
+        // Navigate to the "Home" screen after successful login
+        router.push('/');
+      }
+    } catch (error) {
+      console.error(error);
+      loginError.value = 'Usuário ou senha inválidos'; // Set the error message
     }
   }
+
 </script>
 
 <template>
@@ -38,12 +49,14 @@
                     <label class="form-label" for="form2Example11">Nome ou Email</label>
                   </div>
                   <div class="form-outline mb-4">
-                    <input type="password" id="form2Example22" class="form-control" v-model="user.password" />
+                  <input type="password" id="form2Example22" class="form-control" v-model="user.password" />
                     <label class="form-label" for="form2Example22">Senha</label>
                   </div>
+            
+                  <div v-if="loginError" class="text-danger">{{ loginError }}</div>
                   <div class="text-center pt-1 mb-5 pb-1">
                     <button class="btn btn-primary btn-block fa-lg mb-3" @click="login" type="button">Login</button>
-                  </div>  
+                  </div>
                 </form>
               </div>
             </div>
@@ -94,6 +107,17 @@
 
 button {
   width: 100%;
+}
+
+.text-danger {
+  position: absolute;
+  margin-top: 5%;
+}
+
+@media screen and (max-width: 767px) {
+  .text-danger {
+  margin-top: 20%;
+}
 }
 
 </style>

@@ -1,7 +1,7 @@
 <script></script>
 
 <template>
-    <div class="container-fluid" id="aboutInforratica">
+    <div class="container-fluid overflow-x-hidden" id="aboutInforratica">
         <div class="triangleLeft"></div>
         <div class="container container_item">
             <div class="row">
@@ -25,6 +25,8 @@
 <style scoped>
 
 .container-fluid {
+    margin: 0;
+    padding: 0;
     position: relative;
     background-color: #dadada;
 }
@@ -47,7 +49,7 @@ img {
 }
 
 .triangleLeft {
-    border-Left: 98.8vw solid transparent;
+    border-Left: 100vw solid transparent;
     border-top: 120px solid white;
 }
 

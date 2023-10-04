@@ -1,7 +1,7 @@
 <script></script>
 
 <template>
-    <div class="container-fluid" id="aboutInforratica">
+    <div class="container-fluid overflow-x-hidden" id="aboutInforratica">
         <div class="container container_item">
             <div class="row">
                 <div class="col-12 text-center">

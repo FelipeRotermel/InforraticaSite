@@ -1,7 +1,7 @@
 <script></script>
 
 <template>
-    <div class="container-fluid">
+    <div class="container-fluid overflow-x-hidden">
         <div class="carousel slide w-100">
             <div class="carousel-inner"></div>
             <div class="carousel-caption d-flex align-items-center justify-content-center text-center">

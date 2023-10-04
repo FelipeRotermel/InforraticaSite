@@ -1,7 +1,7 @@
 <script></script>
 
 <template>
-    <div class="container-fluid" id="FAQ">
+    <div class="container-fluid overflow-x-hidden" id="FAQ">
         <div class="col-12 text-center">
             <h3 class="main-title display-6 fw-bold">Perguntas:</h3>
             <hr class="opacity-100">

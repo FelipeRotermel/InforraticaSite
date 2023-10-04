@@ -35,7 +35,7 @@ export default {
 </script>
 
 <template>
-  <div class="container">
+  <div class="container overflow-x-hidden">
     <button ref="invisibleButton" @click="handleButtonClick">
       <img ref="image" src="@/assets/img/dio.webp" alt="Imagem" />
       <audio ref="audioPlayer">

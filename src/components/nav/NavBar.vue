@@ -40,17 +40,24 @@ export default {
                     <li class="nav-item">
                         <a class="nav-link" v-scroll-to="'#FAQ'">Perguntas</a>
                     </li>
-                    <li class="nav-item">
-                        <router-link class="nav-link" to="/cadastro-ordem-servico">Cadastro O.S.</router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link class="nav-link" to="/cadastro-computador">Cadastro PC</router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link class="nav-link" to="/cadastro-notebook">Cadastro Note</router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link class="nav-link" to="/cadastro-cliente">Cadastro Cliente</router-link>
+                    <li class="nav-item dropdown text-light">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Cadastros
+                        </a>
+                        <ul class="dropdown-menu bg-dark">
+                            <li class="nav-item">
+                                <router-link class="nav-link" to="/cadastro-ordem-servico">Cadastro O.S.</router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link class="nav-link" to="/cadastro-computador">Cadastro PC</router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link class="nav-link" to="/cadastro-notebook">Cadastro Note</router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link class="nav-link" to="/cadastro-cliente">Cadastro Cliente</router-link>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>

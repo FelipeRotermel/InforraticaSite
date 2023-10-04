@@ -14,20 +14,13 @@
 
   const switchVisibility = () => {
     const password = document.getElementById('password');
-    const eye = document.getElementById('eye');
-    const icon = document.getElementsByClassName('bi bi-eye');
+    const icon = document.getElementById('eye');
     if (password.type === 'password') {
       password.type = 'text';
-      eye.classList.remove('eye');
-      eye.classList.add('eye-off');
-      icon.classList.remove('bi bi-eye-slash');
-      icon.classList.add('bi bi-eye-slash');
+      icon.classList = 'bi bi-eye';
     } else {
       password.type = 'password';
-      eye.classList.remove('eye-off');
-      eye.classList.add('eye');
-      icon.classList.remove('bi bi-eye-slash');
-      icon.classList.add('bi bi-eye-slash');
+      icon.classList = 'bi bi-eye-slash';
     }
   }
 
@@ -63,11 +56,11 @@
                 <form>
                   <div class="form-outline mb-4">
                     <input type="email" id="form2Example11" class="form-control" v-model="user.email" />
-                    <label class="form-label" for="form2Example11">Nome ou Email</label>
+                    <label class="form-label" for="form2Example11">Email</label>
                   </div>
                   <div class="form-outline mb-4">
                     <input type="password" id="password" name="password" class="form-control" v-model="user.password" />
-                    <span @click="switchVisibility" id="eye"><i class="bi bi-eye"></i></span>
+                    <span @click="switchVisibility"><i class="bi bi-eye-slash" id="eye"></i></span>
                     <label class="form-label" for="form2Example22">Senha</label>
                   </div>
                   <div v-if="loginError" class="text-danger">{{ loginError }}</div>
@@ -131,24 +124,26 @@ button {
   margin-top: 5%;
 }
 
-.eye, #eye {
+#eye {
   position: absolute;
   left: 44%;
   bottom: 31.5%;
   cursor: pointer;
 }
 
-.eye-off {
-  position: absolute;
-  left: 44%;
-  bottom: 31.5%;
-  cursor: pointer;
+@media screen and (max-width: 991px) {
+  #eye {
+    left: 92%;
+  }
 }
 
 @media screen and (max-width: 767px) {
   .text-danger {
-  margin-top: 20%;
-}
+    margin-top: 20%;
+  }
+  #eye {
+    left: 87%;
+  }
 }
 
 </style>

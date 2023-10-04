@@ -40,22 +40,22 @@ export default {
                     <li class="nav-item">
                         <a class="nav-link" v-scroll-to="'#FAQ'">Perguntas</a>
                     </li>
-                    <li class="nav-item dropdown text-light">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Cadastros
                         </a>
-                        <ul class="dropdown-menu bg-dark">
+                        <ul class="dropdown-menu">
                             <li class="nav-item">
-                                <router-link class="nav-link" to="/cadastro-ordem-servico">Cadastro O.S.</router-link>
+                                <router-link class="nav-link drop" to="/cadastro-ordem-servico">Cadastro O.S.</router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link class="nav-link" to="/cadastro-computador">Cadastro PC</router-link>
+                                <router-link class="nav-link drop" to="/cadastro-computador">Cadastro PC</router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link class="nav-link" to="/cadastro-notebook">Cadastro Note</router-link>
+                                <router-link class="nav-link drop" to="/cadastro-notebook">Cadastro Note</router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link class="nav-link" to="/cadastro-cliente">Cadastro Cliente</router-link>
+                                <router-link class="nav-link drop" to="/cadastro-cliente">Cadastro Cliente</router-link>
                             </li>
                         </ul>
                     </li>
@@ -82,7 +82,7 @@ export default {
 <style scoped>
 
 .navbar {
-    background-image: linear-gradient(#000000, transparent);
+    background-image: linear-gradient(#000000,#000000b0,transparent);
     transition: background-color 0.1s linear;
     transition: 0.4s;
     padding: 0;
@@ -123,6 +123,19 @@ a:hover {
 .bars{
     width: 35px;
     height: 35px;
+}
+
+.dropdown-menu {
+    background-color: #212731;
+}
+
+@media screen and (max-width: 767px) {
+    .drop {
+        margin-left: 20px;
+    }
+    .dropdown-menu {
+        background-color: transparent;
+    }
 }
 
 </style>

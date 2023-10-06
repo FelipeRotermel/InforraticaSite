@@ -1,8 +1,8 @@
 <script>
-import ClientesApi from '@/api/clientes'
+import UsuariosApi from '@/api/usuarios'
 import NavBar from '@/components/nav/NavBarAlt.vue'
 
-const clientesApi = new ClientesApi();
+const usuariosApi = new UsuariosApi();
 
 // export function validarCPF(cpf) {
 //   cpf = cpf.replace(/\D/g, ''); // Remove caracteres não numéricos
@@ -46,35 +46,13 @@ export default {
   
   data() {
     return {
-      clientes: [],
-      cliente: {},
+      usuarios: [],
+      usuario: {},
       cpfErrorMessage: '',
-      selectedFilter: 'nome',
-      filters: {
-        cliente: {
-          nome: '',
-          cpf: '',
-          email: '',
-          telefone: '',
-          endereco: '',
-        }
-    },
-    filterOptions: ['nome', 'cpf', 'email', 'telefone', 'endereco']
     };
   },
-  computed: {
-    filteredClientes() {
-      if (this.selectedFilter !== '') {
-        return this.clientes.filter(cliente =>
-          cliente[this.selectedFilter].includes(this.filters.cliente[this.selectedFilter])
-        );
-      } else {
-        return this.clientes;
-      }
-    }
-  },
   async created() {
-    this.clientes = await clientesApi.buscarTodosOsClientes();
+    this.usuarios = await usuariosApi.buscarTodosOsUsuarios();
   },
   methods: {
     async salvar() {
@@ -82,20 +60,20 @@ export default {
     //   this.cpfErrorMessage = 'CPF inválido';
     //   return;
     // }
-      if (this.cliente.id) {
-        await clientesApi.atualizarCliente(this.cliente);
+      if (this.usuario.id) {
+        await usuariosApi.atualizarUsuario(this.usuario);
       } else {
-        await clientesApi.adicionarCliente(this.cliente);
+        await usuariosApi.adicionarUsuario(this.usuario);
       }
-      this.clientes = await clientesApi.buscarTodosOsClientes();
-      this.cliente = {};
+      this.usuarios = await usuariosApi.buscarTodosOsUsuarios();
+      this.usuarios = {};
     },
-    async excluir(cliente) {
-      await clientesApi.excluirCliente(cliente.id);
-      this.clientes = await clientesApi.buscarTodosOsClientes();
+    async excluir(usuario) {
+      await usuariosApi.excluirUsuario(usuario.id);
+      this.usuarios = await usuariosApi.buscarTodosOsUsuarios();
     },
-    editar(cliente) {
-      Object.assign(this.cliente, cliente);
+    editar(usuario) {
+      Object.assign(this.usuario, usuario);
     },
     limparErroCPF() {
       this.cpfErrorMessage = '';
@@ -115,19 +93,19 @@ export default {
             <span class="input-group-text" id="basic-addon3"><i class="bi bi-person"></i></span>
             <input type="text" class="form-control"
               @keyup.enter="salvar" 
-              v-model="cliente.nome"
-              placeholder="Nome - Sobrenome"
+              v-model="usuario.first_name"
+              placeholder="Seu nome"
             >
           </div>
         </div>
         <div class="mb-3">
-          <label class="form-label">CPF:</label>
+          <label class="form-label">Sobrenome:</label>
           <div class="input-group">
-            <span class="input-group-text" id="basic-addon3"><i class="bi bi-person-vcard"></i></span>
+            <span class="input-group-text" id="basic-addon3"><i class="bi bi-person"></i></span>
             <input type="text" class="form-control"
               @keyup.enter="salvar" 
-              v-model="cliente.cpf"
-              placeholder="99999999999"
+              v-model="usuario.last_name"
+              placeholder="Seu sobrenome"
             >
           </div>
         </div>
@@ -137,8 +115,8 @@ export default {
             <span class="input-group-text" id="basic-addon3"><i class="bi bi-envelope"></i></span>
             <input type="text" class="form-control"
               @keyup.enter="salvar" 
-              v-model="cliente.email"
-              placeholder="nome@gmail.com"
+              v-model="usuario.email"
+              placeholder="seuemail@gmail.com"
             >
           </div>
         </div>
@@ -148,19 +126,30 @@ export default {
             <span class="input-group-text" id="basic-addon3"><i class="bi bi-telephone"></i></span>
             <input type="text" class="form-control"
               @keyup.enter="salvar" 
-              v-model="cliente.telefone"
-              placeholder="(99) 99999-9999"
+              v-model="usuario.telefone"
+              placeholder="9999999999"
             >
           </div>
         </div>
         <div class="mb-3">
-          <label class="form-label">Endereço:</label>
+          <label class="form-label">CPF:</label>
           <div class="input-group">
-            <span class="input-group-text" id="basic-addon3"><i class="bi bi-geo-alt"></i></span>
+            <span class="input-group-text" id="basic-addon3"><i class="bi bi-person-vcard"></i></span>
             <input type="text" class="form-control"
               @keyup.enter="salvar" 
-              v-model="cliente.endereco"
-              placeholder="Núm.Casa, Rua, Bairro, Cidade"
+              v-model="usuario.cpf"
+              placeholder="99999999999"
+            >
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Senha:</label>
+          <div class="input-group">
+            <span class="input-group-text" id="basic-addon3"><i class="bi bi-lock"></i></span>
+            <input type="text" class="form-control"
+              @keyup.enter="salvar" 
+              v-model="usuario.password"
+              placeholder="Sua senha"
             >
           </div>
         </div>
@@ -172,39 +161,29 @@ export default {
       <div class="row g-0">
         <div class="col-md-12">
           <div class="card-body">
-            <div class="input-group mb-3">
-              <select class="input-group-text" v-model="selectedFilter">
-                <option value="nome">Nome</option>
-                <option value="cpf">CPF</option>
-                <option value="email">Email</option>
-                <option value="telefone">Telefone</option>
-                <option value="endereco">Endereço</option>
-              </select>
-              <input v-if="selectedFilter" type="text" class="form-control" :placeholder="'Pesquisar ' + selectedFilter" v-model="filters.cliente[selectedFilter]">
-            </div>
             <div class="table-responsive">
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">Cliente</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Sobrenome</th>
                     <th scope="col">Email</th>
                     <th scope="col">Telefone</th>
-                    <th scope="col">Endereço</th>
                     <th scope="col">CPF</th>
                     <th scope="col" id="action">Ações</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="cliente in filteredClientes" :key="cliente.id">
-                    <td>{{ cliente.nome }}</td>
-                    <td>{{ cliente.email }}</td>
-                    <td>{{ cliente.telefone }}</td>
-                    <td>{{ cliente.endereco }}</td>
-                    <td>{{ cliente.cpf }}</td>
+                  <tr v-for="usuario in usuarios" :key="usuario.id">
+                    <td>{{ usuario.first_name }}</td>
+                    <td>{{ usuario.last_name }}</td>
+                    <td>{{ usuario.email }}</td>
+                    <td>{{ usuario.telefone }}</td>
+                    <td>{{ usuario.cpf }}</td>
                     <td>
-                      <button @click="excluir(cliente)" class="col-1 btn btn-danger">Del</button>
+                      <button @click="excluir(usuario)" class="col-1 btn btn-danger">Del</button>
                       <div class="w-100" id="separate"></div>
-                      <button @click="editar(cliente)" class="col-1 btn btn-warning">Edit</button>
+                      <button @click="editar(usuario)" class="col-1 btn btn-warning">Edit</button>
                     </td>
                   </tr>
                 </tbody>

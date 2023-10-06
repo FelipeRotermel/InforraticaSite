@@ -1,11 +1,11 @@
 <script>
-import ClientesApi from '@/api/clientes.js'
+import UsuariosApi from '@/api/usuarios.js'
 import NavBar from '@/components/nav/NavBarAlt.vue'
 import ComputadoresApi from '@/api/computadores.js'
 import OrdemApi from '@/api/ordem.js'
 
 const ordemApi = new OrdemApi();
-const clientesApi = new ClientesApi();
+const usuariosApi = new UsuariosApi();
 const computadoresApi = new ComputadoresApi();
 
 export default {
@@ -14,37 +14,17 @@ export default {
     },
     data() {
     return {
-      clientes: [],
+      usuarios: [],
       computadores: [],
       ordemservicos: [],
-      cliente: {},
+      usuario: {},
       computador: {},
       ordemservico: {},
-      selectedFilter: 'descricao',
-      filters: {
-        ordemservico: {
-          valor: '',
-          descricao: '',
-          data: ''
-        }
-      },
-      filterOptions: ['descricao', 'valor', 'data']
     };
-  },
-  computed: {
-    filteredOrdem() {
-      if (this.selectedFilter !== '') {
-        return this.ordemservicos.filter(ordemservico =>
-          ordemservico[this.selectedFilter].toString().includes(this.filters.ordemservico[this.selectedFilter]),
-        );
-      } else {
-        return this.ordemservicos;
-      }
-    }
   },
   async created() {
     this.ordemservicos = await ordemApi.buscarTodasAsOrdens();
-    this.clientes = await clientesApi.buscarTodosOsClientes();
+    this.usuarios = await usuariosApi.buscarTodosOsUsuarios();
     this.computadores = await computadoresApi.buscarTodosOsComputadores();
   },
   methods: {
@@ -77,8 +57,8 @@ export default {
                     <div class="mb-3">
                         <label class="form-label">Cliente:</label>
                         <div class="input-group">
-                            <select class="input-group-text" v-model="ordemservico.cliente">
-                                <option v-for="cliente in clientes " :key="cliente.id" :value="cliente.id">{{ cliente.nome}}</option>
+                            <select class="input-group-text" v-model="ordemservico.usuario">
+                                <option v-for="usuario in usuarios " :key="usuario.id" :value="usuario.id">{{ usuario.first_name}}</option>
                             </select>
                         </div>
                     </div>
@@ -116,14 +96,6 @@ export default {
       <div class="row g-0">
         <div class="col-md-12">
           <div class="card-body">
-            <div class="input-group mb-3">
-              <select class="input-group-text" id="input" v-model="selectedFilter">
-                <option value="valor">Valor</option>
-                <option value="descricao">Descrição</option>
-                <option value="data">Data</option>
-              </select>
-              <input v-if="selectedFilter" type="text" class="form-control" :placeholder="'Pesquisar ' + selectedFilter" v-model="filters.ordemservico[selectedFilter]">
-            </div>
             <div class="table-responsive">
               <table class="table">
                 <thead>
@@ -137,8 +109,8 @@ export default {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="ordemservico in filteredOrdem" :key="ordemservico.id">
-                    <td>{{ ordemservico.cliente?.nome }}</td>
+                  <tr v-for="ordemservico in ordemservicos" :key="ordemservico.id">
+                    <td>{{ ordemservico.usuario?.first_name }}</td>
                     <td>{{ ordemservico.computador?.gabinete }}</td>
                     <td>{{ ordemservico.descricao }}</td>
                     <td>{{ ordemservico.valor }}</td>

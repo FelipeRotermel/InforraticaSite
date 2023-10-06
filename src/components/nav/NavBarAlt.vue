@@ -40,7 +40,7 @@ export default {
                         <router-link class="nav-link" to="/cadastro-notebook">Cadastro Note</router-link>
                     </li>
                     <li class="nav-item">
-                        <router-link class="nav-link" to="/cadastro-cliente">Cadastro Cliente</router-link>
+                        <router-link class="nav-link" to="/cadastro-usuario">Cadastro Cliente</router-link>
                     </li>
                 </ul>
             </div>

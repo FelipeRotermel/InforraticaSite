@@ -85,8 +85,7 @@ export default {
   <NavBar />
   <div class="container-fluid">
     <div class="row d-flex align-items-center justify-content-center" id="main">
-      <div class="col-md-3 col-12"></div>
-      <div class="col-md-6 col-12">
+      <div class="col-md-5 col-12">
         <div class="mb-3">
           <label class="form-label">Nome:</label>
           <div class="input-group">
@@ -96,12 +95,6 @@ export default {
               v-model="usuario.first_name"
               placeholder="Seu nome"
             >
-          </div>
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Sobrenome:</label>
-          <div class="input-group">
-            <span class="input-group-text" id="basic-addon3"><i class="bi bi-person"></i></span>
             <input type="text" class="form-control"
               @keyup.enter="salvar" 
               v-model="usuario.last_name"
@@ -131,6 +124,8 @@ export default {
             >
           </div>
         </div>
+      </div>
+      <div class="col-md-5 col-12">
         <div class="mb-3">
           <label class="form-label">CPF:</label>
           <div class="input-group">
@@ -139,6 +134,17 @@ export default {
               @keyup.enter="salvar" 
               v-model="usuario.cpf"
               placeholder="99999999999"
+            >
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Endereço:</label>
+          <div class="input-group">
+            <span class="input-group-text" id="basic-addon3"><i class="bi bi-house"></i></span>
+            <input type="text" class="form-control"
+              @keyup.enter="salvar" 
+              v-model="usuario.endereco"
+              placeholder="Número - Rua - Bairro - Cidade"
             >
           </div>
         </div>
@@ -154,7 +160,6 @@ export default {
           </div>
         </div>
       </div>
-      <div class="col-md-3 col-12"></div>
       <button class="btn btn-success" @click="salvar">Salvar</button>
     </div>
     <div class="col-12" id="clientes">
@@ -170,6 +175,7 @@ export default {
                     <th scope="col">Email</th>
                     <th scope="col">Telefone</th>
                     <th scope="col">CPF</th>
+                    <th scope="col">Endereço</th>
                     <th scope="col" id="action">Ações</th>
                   </tr>
                 </thead>
@@ -180,6 +186,7 @@ export default {
                     <td>{{ usuario.email }}</td>
                     <td>{{ usuario.telefone }}</td>
                     <td>{{ usuario.cpf }}</td>
+                    <td>{{ usuario.endereco }}</td>
                     <td>
                       <button @click="excluir(usuario)" class="col-1 btn btn-danger">Del</button>
                       <div class="w-100" id="separate"></div>
@@ -243,10 +250,6 @@ button {
 
 .col-1 {
   width: 100%;
-}
-
-.btn-success {
-  margin-top: -5%;
 }
 
 @media screen and (max-width: 767px) {

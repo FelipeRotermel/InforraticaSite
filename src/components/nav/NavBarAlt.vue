@@ -1,14 +1,11 @@
 <script>
 localStorage.setItem('token', 'seu_token_de_autenticacao');
 
-// Recuperar um valor do localStorage
 const token = localStorage.getItem('token');
 
-// Remover um valor do localStorage
 localStorage.removeItem('token');
 export default {
   computed: {
-    // Use a computed property to check if the token is present
     isLoggedIn() {
       return localStorage.getItem('token') !== null;
     },

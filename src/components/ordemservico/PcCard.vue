@@ -1,14 +1,31 @@
-<script></script>
+<script>
+  import OrdemApi from '@/api/ordem.js'
+
+  const ordemApi = new OrdemApi();
+
+  export default {
+    data() {
+      return {
+        ordemservicos: [],
+      };
+    },
+    async created() {
+      this.ordemservicos = await ordemApi.buscarTodasAsOrdens();
+      console.log(this.ordemservicos);
+    },
+  };
+
+</script>
 
 <template>
-    <div class="card mb-3">
+    <div v-for="ordemservico in ordemservicos" :key="ordemservico.id" class="card mb-3">
       <div class="row g-0">
         <div class="col-md-4">
-          <img src="@/assets/img/Pc.png" class="img-fluid rounded-start">
+          <img :src="ordemservico.computador.capa ? ordemservico.computador.capa.url : ''" class="img-fluid rounded-start">
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h5 class="card-title fs-2">PC Gamer MSI</h5>
+            <h5 class="card-title fs-2">{{ ordemservico.computador.gabinete }}</h5>
             <div class="table-responsive">
               <table class="table">
                 <thead>
@@ -21,33 +38,33 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>MSI H310M Pro-VDH Plus</td>
-                    <td>Intel Core i3 - 9100F</td>
-                    <td>(x2) HyperX Fury 8GB 2666MHZ DDR4</td>
-                    <td>Zotac RTX 2060 6GB</td>
+                    <td>{{ ordemservico.computador.placa_mae }}</td>
+                    <td>{{ ordemservico.computador.processador }}</td>
+                    <td>{{ ordemservico.computador.memoria_ram }}</td>
+                    <td>{{ ordemservico.computador.placa_de_video }}</td>
                   </tr>
                 </tbody>
                 <thead>
                   <tr>
-                    <th scope="col">Armazenamento</th>
+                    <th scope="col">SSD</th>
+                    <th scope="col">HD</th>
                     <th scope="col">Cooler</th>
-                    <th scope="col">Fonte</th>
                     <th scope="col">Gabinete</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Husky Gaming 128GB</td>
-                    <td>Intel Core Stock Cooler 1151</td>
-                    <td>Corsair CV 450W 80 Plus Bronze</td>
-                    <td>Aigo DarkFlash Melody</td>
+                    <td>{{ ordemservico.computador.ssd }}</td>
+                    <td>{{ ordemservico.computador.hd }}</td>
+                    <td>{{ ordemservico.computador.cooler }}</td>
+                    <td>{{ ordemservico.computador.fonte }}</td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <div class="row">
-              <p class="card-text col-8">"Computador não está ligando, apenas acende o led da placa-mãe"</p>
-              <p class="card-text text-end col-4">Aguardando peça do fornecedor</p>
+              <p class="card-text col-8">"{{ ordemservico.descricao }}"</p>
+              <p class="card-text text-end col-4">"{{ ordemservico.status }}"</p>
             </div>
           </div>
         </div>

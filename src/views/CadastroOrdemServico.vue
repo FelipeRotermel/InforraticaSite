@@ -76,11 +76,17 @@ export default {
                 </div>
             </div>
             <div class="row d-flex align-items-center justify-content-center">
-                <div class="col-md-8">
+                <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group">Descrição do problema: </span>
                         <input v-model="ordemservico.descricao" class="form-control" aria-label="With input" />
                     </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="input-group">
+                    <span class="input-group">Status: </span>
+                    <input type="text" v-model="ordemservico.status" class="form-control" aria-label="Amount (to the nearest dollar)">
+                  </div>
                 </div>
                 <div class="col-md-2">
                   <div class="input-group">
@@ -103,6 +109,7 @@ export default {
                     <th scope="col">Cliente</th>
                     <th scope="col">Computador</th>
                     <th scope="col">Descrição</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Valor</th>
                     <th scope="col">Data</th>
                     <th scope="col" id="action">Ações</th>
@@ -113,6 +120,7 @@ export default {
                     <td>{{ ordemservico.usuario?.first_name }}</td>
                     <td>{{ ordemservico.computador?.gabinete }}</td>
                     <td>{{ ordemservico.descricao }}</td>
+                    <td>{{ ordemservico.status }}</td>
                     <td>{{ ordemservico.valor }}</td>
                     <td>{{ ordemservico.data }}</td>
                     <td>

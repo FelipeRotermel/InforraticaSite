@@ -10,22 +10,25 @@
       };
     },
     async created() {
-      this.ordemservicos = await ordemApi.buscarTodasAsOrdens();
-      console.log(this.ordemservicos);
+      try {
+        this.ordemservicos = await ordemApi.buscarTodasAsOrdens();
+        console.log("Data fetched:", this.ordemservicos);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     },
   };
-
 </script>
 
 <template>
     <div v-for="ordemservico in ordemservicos" :key="ordemservico.id" class="card mb-3">
       <div class="row g-0">
         <div class="col-md-4">
-          <img :src="ordemservico.computador.capa ? ordemservico.computador.capa.url : ''" class="img-fluid rounded-start">
+          <img :src="ordemservico.computador.capa.file" class="img-fluid rounded-start">
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h5 class="card-title fs-2">{{ ordemservico.computador.gabinete }}</h5>
+            <h3 class="card-title fs-1">{{ ordemservico.computador.gabinete }}</h3>
             <div class="table-responsive">
               <table class="table">
                 <thead>
@@ -63,7 +66,7 @@
               </table>
             </div>
             <div class="row">
-              <p class="card-text col-8">"{{ ordemservico.descricao }}"</p>
+              <p class="card-text col-8">"{{ ordemservico.descricao }}" - "{{ ordemservico.data }}"</p>
               <p class="card-text text-end col-4">"{{ ordemservico.status }}"</p>
             </div>
           </div>
@@ -77,17 +80,24 @@
 table {
   border-collapse: collapse;
   border-spacing: 0;
-  height: 40vh;
   border: 1px solid #ddd;
 }
 
 th {
   background-color: #b6b6b6;
+  height: 10vh;
   color: white;
 }
 
 td {
+  height: 10vh;
   width: 300px;
+}
+
+.img-fluid {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
 }
 
 .text-end {

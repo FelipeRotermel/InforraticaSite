@@ -6,8 +6,8 @@ const MY_IP = import.meta.env.VITE_MY_IP
 console.log(`${MY_IP}`)
 
 const api = axios.create({
-  baseURL: `http://${MY_IP}:19003/`,
-  // baseURL: 'http://192.168.0.17:19003/api/',
+//  baseURL: `https://silver-spoon-vj57479jgvp2x59q-19003.app.github.dev/`,
+    baseURL: `http://${MY_IP}:19003/api/`,
 })
 
 api.interceptors.request.use(

@@ -26,7 +26,7 @@
 
   const login = async () => {
     try {
-      const { data } = await axios.post(`http://${MY_IP}:19003/token/`, user.value);
+      const { data } = await axios.post(`https://silver-spoon-vj57479jgvp2x59q-19003.app.github.dev/token/`, user.value);
       if (data) {
         localStorage.setItem('token', data.access);
         router.push('/');

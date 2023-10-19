@@ -6,8 +6,7 @@ const MY_IP = import.meta.env.VITE_MY_IP
 console.log(`${MY_IP}`)
 
 const api = axios.create({
-//  baseURL: `https://silver-spoon-vj57479jgvp2x59q-19003.app.github.dev/`,
-    baseURL: `http://${MY_IP}:19003/api/`,
+    baseURL: `https://inforratica-django.1.us-1.fl0.io/`,
 })
 
 api.interceptors.request.use(

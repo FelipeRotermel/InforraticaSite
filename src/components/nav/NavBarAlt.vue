@@ -1,13 +1,20 @@
 <script>
 localStorage.setItem('token', 'seu_token_de_autenticacao');
 
+// Recuperar um valor do localStorage
 const token = localStorage.getItem('token');
 
+// Remover um valor do localStorage
 localStorage.removeItem('token');
 export default {
   computed: {
     isLoggedIn() {
       return localStorage.getItem('token') !== null;
+    },
+    userRole() {
+        const role = localStorage.getItem('userRole');
+        console.log('UserRole:', role); // Isso irá imprimir o valor no console
+        return role;
     },
   },
 };
@@ -24,19 +31,19 @@ export default {
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
                 <ul class="navbar-nav mb-3 mb-lg-0">
-                    <li class="nav-item">
+                    <li class="nav-item" v-if="userRole === 'admin'">
                         <router-link class="nav-link" to="/">Home</router-link>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" v-if="userRole === 'admin'">
                         <router-link class="nav-link" to="/cadastro-ordem-servico">Cadastro O.S.</router-link>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" v-if="userRole === 'admin'">
                         <router-link class="nav-link" to="/cadastro-computador">Cadastro PC</router-link>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" v-if="userRole === 'admin'">
                         <router-link class="nav-link" to="/cadastro-notebook">Cadastro Note</router-link>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" v-if="userRole === 'admin'">
                         <router-link class="nav-link" to="/cadastro-usuario">Cadastro Cliente</router-link>
                     </li>
                 </ul>

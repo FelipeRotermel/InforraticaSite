@@ -1,5 +1,4 @@
 <script>
-
 localStorage.setItem('token', 'seu_token_de_autenticacao');
 
 // Recuperar um valor do localStorage
@@ -9,9 +8,13 @@ const token = localStorage.getItem('token');
 localStorage.removeItem('token');
 export default {
   computed: {
-    // Use a computed property to check if the token is present
     isLoggedIn() {
       return localStorage.getItem('token') !== null;
+    },
+    userRole() {
+        const role = localStorage.getItem('userRole');
+        console.log('UserRole:', role); // Isso irá imprimir o valor no console
+        return role;
     },
   },
 };
@@ -40,7 +43,7 @@ export default {
                     <li class="nav-item">
                         <a class="nav-link" v-scroll-to="'#FAQ'">Perguntas</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown" v-if="userRole === 'admin'">
                         <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Cadastros
                         </a>

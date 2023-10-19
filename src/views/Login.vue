@@ -2,6 +2,7 @@
   import axios from 'axios'
   import { ref, computed} from 'vue'
   import { useRouter } from 'vue-router';
+  import jwt_decode from 'jwt-decode';
   import NavBar from '@/components/nav/NavBarAlt.vue'
 
   const MY_IP = import.meta.env.VITE_MY_IP
@@ -25,17 +26,32 @@
   }
 
   const login = async () => {
-    try {
-      const { data } = await axios.post(`https://silver-spoon-vj57479jgvp2x59q-19003.app.github.dev/token/`, user.value);
-      if (data) {
-        localStorage.setItem('token', data.access);
-        router.push('/');
+  try {
+    const { data } = await axios.post(`https://inforratica-django.1.us-1.fl0.io/token/`, user.value);
+    if (data) {
+      localStorage.setItem('token', data.access);
+      console.log(data.access);
+
+      
+      const decodedToken = jwt_decode(data.access);
+      console.log("Código",decodedToken);
+      const id = decodedToken.user_id;
+      console.log(id);
+
+      if (id === 1) {
+        // Usuário é um administrador
+        localStorage.setItem('userRole', 'admin');
+      } else {
+        // Usuário é um usuário comum
+        localStorage.setItem('userRole', 'user');
       }
-    } catch (error) {
-      console.error(error);
-      loginError.value = 'Usuário ou senha inválidos';
+      router.push('/');
     }
+  } catch (error) {
+    console.error(error);
+    loginError.value = 'Usuário ou senha inválidos';
   }
+}
 
 </script>
 

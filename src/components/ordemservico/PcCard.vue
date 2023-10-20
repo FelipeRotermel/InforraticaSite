@@ -66,7 +66,7 @@
               </table>
             </div>
             <div class="row">
-              <p class="card-text col-8">"{{ ordemservico.descricao }}" - "{{ ordemservico.data }}"</p>
+              <p class="card-text col-8">{{ ordemservico.descricao }} - "{{ ordemservico.data }}"</p>
               <p class="card-text text-end col-4">"{{ ordemservico.status }}"</p>
             </div>
           </div>

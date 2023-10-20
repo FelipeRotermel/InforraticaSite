@@ -3,7 +3,6 @@ export default {
   mounted() {
     const button = this.$refs.invisibleButton;
     const audioPlayer = this.$refs.audioPlayer;
-
     button.addEventListener('transitionend', () => {
       button.classList.remove('expanding');
     });
@@ -13,15 +12,12 @@ export default {
       const button = this.$refs.invisibleButton;
       const image = this.$refs.image;
       const audioPlayer = this.$refs.audioPlayer;
-
       button.classList.add('clicked', 'expanding');
       image.style.display = 'block';
       audioPlayer.play();
-
       setTimeout(() => {
         button.classList.add('is-expanded');
       }, 1600);
-
       audioPlayer.addEventListener('ended', () => {
         setTimeout(() => {
           button.classList.remove('is-expanded');
@@ -35,7 +31,7 @@ export default {
 </script>
 
 <template>
-  <div class="container overflow-x-hidden">
+  <div class="container">
     <button ref="invisibleButton" @click="handleButtonClick">
       <img ref="image" src="@/assets/img/dio.webp" alt="Imagem" />
       <audio ref="audioPlayer">
@@ -47,47 +43,41 @@ export default {
 
 <style scoped>
 .container {
-    left: 50%;
-    position: absolute;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 200px;
-    overflow-x: visible;
+  left: 49%;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 200px;
 }
-
 button {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    outline: 0;
-    overflow: hidden;
-    transition: background-color 0.3s ease;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: 0;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
 }
-
 button img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: none;
 }
-
 button.clicked {
-    outline: none;
+  outline: none;
 }
-
 button.expanding {
-    transition: outline 1s linear;
+  transition: outline 1s linear;
 }
-
 button.is-expanded {
-    z-index: 999;
-    outline: 2000px solid;
-    border-radius: 50%;
-    animation: explosion 4.1s infinite;
+  z-index: 999;
+  outline: 2000px solid;
+  border-radius: 50%;
+  animation: explosion 4.1s infinite;
 }
 
 @keyframes explosion {

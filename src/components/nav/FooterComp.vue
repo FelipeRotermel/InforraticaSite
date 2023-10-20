@@ -87,6 +87,7 @@ a {
 
 i {
   font-size: 22px;
+  cursor: pointer;
 }
 
 </style>

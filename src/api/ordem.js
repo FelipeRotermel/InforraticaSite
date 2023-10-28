@@ -2,12 +2,12 @@
 import api from "../plugins/api";
 export default class OrdemApi {
   async buscarTodasAsOrdens() {
-    const response = await api.get("ordemservico/");
+    const response = await api.get("ordemservico/user_orders/");
     return response.data;
   }
 
   async buscarOrdem(id) {
-    const response = await api.get(`ordemservico/${id}`);
+    const response = await api.get(`ordemservico/user_orders/${id}`);
     return response.data;
   }
 

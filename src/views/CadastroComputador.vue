@@ -245,6 +245,11 @@ button {
   width: 20%;
 }
 
+.btn-success {
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
 #computadores {
   margin-top: 5vh;
 }
@@ -292,6 +297,9 @@ img {
   }
   #computadores {
     margin-top: 35vh;
+  }
+  button {
+    width: 50%;
   }
 }
 </style>

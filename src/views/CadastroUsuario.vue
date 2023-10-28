@@ -231,8 +231,14 @@ td {
   border: 1px solid #ddd;
 }
 
+.btn-success {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
 button {
   width: 20%;
+  height: 7%;
 }
 
 #action {
@@ -262,5 +268,12 @@ button {
   #clientes {
     padding: 3%;
   }
+  .btn-success {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  button {
+    width: 50%;
+    height: 5%;}
 }
 </style>

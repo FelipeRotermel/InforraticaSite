@@ -65,7 +65,7 @@ export default {
             <input type="text" class="form-control" 
               @keyup.enter="salvar" 
               v-model="currentNotebook.marca"
-              placeholder="Marca - modelo"
+              placeholder="Marca"
             >
           </div>
         </div>
@@ -76,7 +76,7 @@ export default {
             <input type="text" class="form-control" 
               @keyup.enter="salvar" 
               v-model="currentNotebook.modelo"      
-              placeholder="Marca - modelo"
+              placeholder="Modelo"
             >
           </div>
         </div>
@@ -128,7 +128,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  padding-top: 5%;
+  padding-top: 10%;
 }
 
 .row {
@@ -141,6 +141,7 @@ input[type="file"] {
 
 button {
   width: 20%;
+  height: 7%;
 }
 
 #notebooks {
@@ -183,11 +184,18 @@ img {
   .container-fluid {
     padding-top: 25%;
   }
+  .col-md-3 {
+    display: none;
+  }
   table {
     width: 800px;
   }
-  #notebooks {
-    margin-top: 35vh;
+  .row {
+    height: 50%;
+  }
+  button {
+    width: 50%;
+    height: 10%;
   }
 }
 </style>

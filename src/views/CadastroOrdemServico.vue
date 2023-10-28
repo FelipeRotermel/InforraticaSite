@@ -1,12 +1,14 @@
 <script>
-import UsuariosApi from '@/api/usuarios.js'
 import NavBar from '@/components/nav/NavBarAlt.vue'
+import UsuariosApi from '@/api/usuarios.js'
+import NotebooksApi from '@/api/notebooks.js'
 import ComputadoresApi from '@/api/computadores.js'
 import OrdemApi from '@/api/ordem.js'
 
-const ordemApi = new OrdemApi();
 const usuariosApi = new UsuariosApi();
+const notebooksApi = new NotebooksApi();
 const computadoresApi = new ComputadoresApi();
+const ordemApi = new OrdemApi();
 
 export default {
     components: {
@@ -15,17 +17,22 @@ export default {
     data() {
     return {
       usuarios: [],
-      computadores: [],
-      ordemservicos: [],
       usuario: {},
+      notebooks: [],
+      notebook: {},
+      computadores: [],
       computador: {},
+      ordemservicos: [],
       ordemservico: {},
+      selectedDeviceType: 'computer',
     };
   },
   async created() {
-    this.ordemservicos = await ordemApi.buscarTodasAsOrdens();
     this.usuarios = await usuariosApi.buscarTodosOsUsuarios();
+    this.notebooks = await notebooksApi.buscarTodosOsNotebooks();
     this.computadores = await computadoresApi.buscarTodosOsComputadores();
+    this.ordemservicos = await ordemApi.buscarTodasAsOrdens();
+    console.log(this.ordemservicos);
   },
   methods: {
     async salvar() {
@@ -35,7 +42,6 @@ export default {
         await ordemApi.adicionaOrdem(this.ordemservico);
       }
       this.ordemservicos = await ordemApi.buscarTodasAsOrdens();
-      this.ordemservico = {};
     },
     async excluir(ordemservico) {
       await ordemApi.excluirOrdem(ordemservico.id);
@@ -52,7 +58,7 @@ export default {
     <NavBar />
     <div class="container-fluid">
         <div class="col-12">
-            <div class="row d-flex align-items-center justify-content-center">
+            <div class="row d-flex justify-content-center">
                 <div class="col-md-5 col-12">
                     <div class="mb-3">
                         <label class="form-label">Cliente:</label>
@@ -63,35 +69,49 @@ export default {
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5 col-12">
-                    <div class="md-3">
-                        <label class="form-label">Computador:</label>
-                        <div class="input-group">
-                            <select class="input-group-text" v-model="ordemservico.computador">
-                                <option v-for="computador in computadores" :key="computador.id" :value="computador.id">{{ computador.gabinete }}</option>
-                            </select>
-                          
-                        </div>
-                    </div>
-                </div>
+                <div class="col-md-5">
+                  <div class="md-3">
+                    <label class="form-label">Computador / Notebook:</label>
+                      <div class="row">
+                      <select class="form-select" v-model="selectedDeviceType">
+                        <option value="computer">Computador</option>
+                        <option value="notebook">Notebook</option>
+                      </select>
+                        <select class="input-group-text" id="select" v-model="ordemservico.computador" v-if="selectedDeviceType === 'computer'">
+                          <option v-for="computador in computadores" :key="computador.id" :value="computador.id">{{ computador.gabinete }}</option>
+                        </select>
+                        <select class="input-group-text" id="select" v-model="ordemservico.notebook" v-if="selectedDeviceType === 'notebook'">
+                          <option v-for="notebook in notebooks" :key="notebook.id" :value="notebook.id">{{ notebook.modelo }}</option>
+                        </select>
+                      </div>
+                  </div>
+              </div>
             </div>
             <div class="row d-flex align-items-center justify-content-center">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="input-group">
                         <span class="input-group">Descrição do problema: </span>
-                        <input v-model="ordemservico.descricao" class="form-control" aria-label="With input" />
+                        <input class="input-group-text" v-model="ordemservico.descricao">
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
                   <div class="input-group">
                     <span class="input-group">Status: </span>
-                    <input type="text" v-model="ordemservico.status" class="form-control" aria-label="Amount (to the nearest dollar)">
+                    <select class="input-group-text" v-model="ordemservico.status">
+                      <option>Em análise</option>
+                      <option>Em aprovação</option>
+                      <option>Aprovado</option>
+                      <option>Aguardando peça</option>
+                      <option>Em manutenção</option>
+                      <option>Aguardando retirada</option>
+                      <option>Finalizado</option>
+                    </select>
                   </div>
                 </div>
                 <div class="col-md-2">
                   <div class="input-group">
                     <span class="input-group">Valor: </span>
-                    <input type="text" v-model="ordemservico.valor" class="form-control" aria-label="Amount (to the nearest dollar)">
+                    <input class="input-group-text" v-model="ordemservico.valor">
                   </div>
                 </div>
             </div>
@@ -107,7 +127,7 @@ export default {
                 <thead>
                   <tr>
                     <th scope="col">Cliente</th>
-                    <th scope="col">Computador</th>
+                    <th scope="col">PC / Notebook</th>
                     <th scope="col">Descrição</th>
                     <th scope="col">Status</th>
                     <th scope="col">Valor</th>
@@ -118,10 +138,13 @@ export default {
                 <tbody>
                   <tr v-for="ordemservico in ordemservicos" :key="ordemservico.id">
                     <td>{{ ordemservico.usuario?.first_name }}</td>
-                    <td>{{ ordemservico.computador?.gabinete }}</td>
+                    <td>
+                      {{ ordemservico.computador?.gabinete }}
+                      {{ ordemservico.notebook?.modelo }}
+                    </td>
                     <td>{{ ordemservico.descricao }}</td>
                     <td>{{ ordemservico.status }}</td>
-                    <td>{{ ordemservico.valor }}</td>
+                    <td>R$ {{ ordemservico.valor }}</td>
                     <td>{{ ordemservico.data }}</td>
                     <td>
                       <button class="col-1 btn btn-danger" @click="excluir(ordemservico)">Del</button>
@@ -159,6 +182,14 @@ export default {
 
 #input {
   width: 10%;
+}
+
+.form-select {
+  width: 25%;
+}
+
+#select {
+  width: 75%;
 }
 
 .btn-success {
